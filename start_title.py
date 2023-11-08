@@ -1,7 +1,7 @@
 from pico2d import *
 
 
-class Title:
+class StartTitle:
     def __init__(self):
         self.title_image = load_image('./resource/start_title.png')
         self.announcement_image = load_image('./resource/start_announcement.png')

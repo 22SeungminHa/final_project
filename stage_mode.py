@@ -2,9 +2,13 @@ from pico2d import *
 
 import game_framework
 import game_world
-import stage_mode
-from start_background import StartBackground
-from start_title import StartTitle
+import start_mode
+from stage import Stage
+from stage_background import StageBackground
+
+
+def handle_select(x, y):
+    pass
 
 
 def handle_events():
@@ -13,23 +17,22 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            game_framework.quit()
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
             game_world.clear()
-            game_framework.change_mode(stage_mode)
+            game_framework.change_mode(start_mode)
+        elif event.type == SDL_MOUSEBUTTONDOWN and event.key == SDL_BUTTON_LEFT:
+            handle_select(event.x, event.y)
 
 
 def init():
-    global title
-    global background
-    global announcement
+    global stage_background
+    global stage
     running = True
 
-    background = StartBackground()
-    game_world.add_object(background, 0)
+    stage_background = StageBackground()
+    game_world.add_object(stage_background, 0)
 
-    title = StartTitle()
-    game_world.add_object(title, 0)
+    stage = Stage()
+    game_world.add_object(stage, 0)
 
 
 def finish():
