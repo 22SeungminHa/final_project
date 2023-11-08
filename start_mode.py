@@ -15,7 +15,6 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
-            game_world.clear()
             game_framework.change_mode(stage_list_mode)
 
 
@@ -43,3 +42,11 @@ def draw():
     clear_canvas()
     game_world.render()
     update_canvas()
+
+
+def pause():
+    pass
+
+
+def resume():
+    pass

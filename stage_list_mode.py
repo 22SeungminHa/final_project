@@ -10,10 +10,11 @@ from stage_list_background import StageListBackground
 
 def handle_select(x, y):
     for i in range(5):
-        if x <= stage_list.x[i] + stage_list.w[i] / 2 and x >= stage_list.x[i] - stage_list.w[i] / 2 and y <= stage_list.y[i] + stage_list.h[i] / 2 and y >= stage_list.y[i] - stage_list.h[i] / 2:
+        if stage_list.x[i] - stage_list.w[i] / 2 <= x <= stage_list.x[i] + stage_list.w[i] / 2 and stage_list.y[i] - stage_list.h[i] / 2 <= y <= stage_list.y[i] + stage_list.h[i] / 2:
             stage_list.select = i
             return
     stage_list.select = -1
+    print('False')
 
 
 def handle_events():
@@ -22,14 +23,14 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            game_world.clear()
             game_framework.change_mode(start_mode)
+
+        elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
+            print('selected')
+            if 0 <= stage_list.select < 5:
+                game_framework.change_mode(play_mode)
         elif event.type == SDL_MOUSEMOTION:
             handle_select(event.x, event.y)
-        elif event.type == SDL_MOUSEBUTTONDOWN and event.key == SDL_BUTTON_LEFT:
-            if stage_list.select >= 0:
-                game_world.clear()
-                game_framework.change_mode(play_mode)
 
 
 def init():
@@ -55,3 +56,11 @@ def draw():
     clear_canvas()
     game_world.render()
     update_canvas()
+
+
+def pause():
+    pass
+
+
+def resume():
+    pass

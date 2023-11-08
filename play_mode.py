@@ -1,36 +1,18 @@
 from pico2d import *
 
-import basic_stage
+import stage1_play
 import game_world
-import stage_list
+import stage_list_mode
+
+stage = [stage1_play, stage1_play, stage1_play, stage1_play, stage1_play]
 
 
 def handle_events():
-    match stage_list.select:
-        case 0:
-            basic_stage.handle_events()
-        case 1:
-            pass
-        case 2:
-            pass
-        case 3:
-            pass
-        case 4:
-            pass
+    stage[stage_list_mode.stage_list.select].handle_events()
 
 
 def init():
-    match stage_list.select:
-        case 0:
-            basic_stage.init()
-        case 1:
-            pass
-        case 2:
-            pass
-        case 3:
-            pass
-        case 4:
-            pass
+    stage[stage_list_mode.stage_list.select].init()
 
 
 def finish():
@@ -45,3 +27,11 @@ def draw():
     clear_canvas()
     game_world.render()
     update_canvas()
+
+
+def pause():
+    pass
+
+
+def resume():
+    pass

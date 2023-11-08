@@ -3,10 +3,10 @@ from pico2d import *
 import game_framework
 import game_world
 import stage_list_mode
-from arrow import Arrow
-from bow import Bow
+from object_arrow import Arrow
+from object_bow import Bow
 from stage1_background import Stage1Background
-from target import Target
+from object_target import Target
 
 
 def handle_events():
@@ -38,27 +38,3 @@ def init():
 
     target = Target()
     game_world.add_object(target, 0)
-
-
-def finish():
-    game_world.clear()
-    pass
-
-
-def update():
-    game_world.update()
-    game_world.handle_collisions()
-
-
-def draw():
-    clear_canvas()
-    game_world.render()
-    update_canvas()
-
-
-def pause():
-    pass
-
-
-def resume():
-    pass
