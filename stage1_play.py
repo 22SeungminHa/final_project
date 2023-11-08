@@ -30,11 +30,11 @@ def init():
     background = Stage1Background()
     game_world.add_object(background, 0)
 
-    arrow = Arrow()
-    game_world.add_object(arrow, 0)
+    # arrow = Arrow()
+    # game_world.add_object(arrow, 0)
 
     bow = Bow()
-    game_world.add_object(bow, 0)
+    game_world.add_object(bow, 1)
 
     target = Target()
     game_world.add_object(target, 0)

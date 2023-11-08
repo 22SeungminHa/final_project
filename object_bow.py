@@ -9,5 +9,5 @@ class Bow:
         pass
 
     def draw(self):
-        self.image.draw(711, 400)
+        self.image.draw(711, 400, 800, 800)
 
