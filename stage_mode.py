@@ -8,7 +8,10 @@ from stage_background import StageBackground
 
 
 def handle_select(x, y):
-    pass
+    for i in range(5):
+        if x <= stage.x[i] + stage.w[i] / 2 and x >= stage.x[i] - stage.w[i] / 2 and y <= stage.y[i] + stage.h[i] / 2 and y >= stage.y[i] - stage.h[i] / 2:
+            stage.select = i
+            return
 
 
 def handle_events():
@@ -19,8 +22,11 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_world.clear()
             game_framework.change_mode(start_mode)
-        elif event.type == SDL_MOUSEBUTTONDOWN and event.key == SDL_BUTTON_LEFT:
+        elif event.type == SDL_MOUSEMOTION:
             handle_select(event.x, event.y)
+        elif event.type == SDL_MOUSEBUTTONDOWN and event.key == SDL_BUTTON_LEFT:
+            if stage.select >= 0:
+                pass
 
 
 def init():
