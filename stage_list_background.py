@@ -1,9 +1,9 @@
 from pico2d import *
 
 
-class StageBackground:
+class StageListBackground:
     def __init__(self):
-        self.image = load_image('./resource/start_background.png')
+        self.image = load_image('./resource/stage_background.png')
 
     def update(self):
         pass

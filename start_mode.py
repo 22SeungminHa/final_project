@@ -2,7 +2,7 @@ from pico2d import *
 
 import game_framework
 import game_world
-import stage_mode
+import stage_list_mode
 from start_background import StartBackground
 from start_title import StartTitle
 
@@ -16,7 +16,7 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
             game_world.clear()
-            game_framework.change_mode(stage_mode)
+            game_framework.change_mode(stage_list_mode)
 
 
 def init():

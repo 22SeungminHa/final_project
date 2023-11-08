@@ -2,7 +2,7 @@ from pico2d import *
 
 image_names = ('basic', 'wind', 'sheep', 'poop', 'TomYumGoong')
 
-class Stage:
+class StageList:
     def __init__(self):
         self.image = [load_image('./resource/stage_' + image_names[i] + '.png') for i in range(5)]
         self.x = (248, 671, 1170, 466, 1031)

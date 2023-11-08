@@ -2,16 +2,18 @@ from pico2d import *
 
 import game_framework
 import game_world
+import play_mode
 import start_mode
-from stage import Stage
-from stage_background import StageBackground
+from stage_list import StageList
+from background import StageListBackground
 
 
 def handle_select(x, y):
     for i in range(5):
-        if x <= stage.x[i] + stage.w[i] / 2 and x >= stage.x[i] - stage.w[i] / 2 and y <= stage.y[i] + stage.h[i] / 2 and y >= stage.y[i] - stage.h[i] / 2:
-            stage.select = i
+        if x <= stage_list.x[i] + stage_list.w[i] / 2 and x >= stage_list.x[i] - stage_list.w[i] / 2 and y <= stage_list.y[i] + stage_list.h[i] / 2 and y >= stage_list.y[i] - stage_list.h[i] / 2:
+            stage_list.select = i
             return
+    stage_list.select = -1
 
 
 def handle_events():
@@ -25,20 +27,21 @@ def handle_events():
         elif event.type == SDL_MOUSEMOTION:
             handle_select(event.x, event.y)
         elif event.type == SDL_MOUSEBUTTONDOWN and event.key == SDL_BUTTON_LEFT:
-            if stage.select >= 0:
-                pass
+            if stage_list.select >= 0:
+                game_world.clear()
+                game_framework.change_mode(play_mode)
 
 
 def init():
-    global stage_background
-    global stage
+    global background
+    global stage_list
     running = True
 
-    stage_background = StageBackground()
-    game_world.add_object(stage_background, 0)
+    background = StageListBackground()
+    game_world.add_object(background, 0)
 
-    stage = Stage()
-    game_world.add_object(stage, 0)
+    stage_list = StageList()
+    game_world.add_object(stage_list, 0)
 
 
 def finish():
