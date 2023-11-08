@@ -23,7 +23,6 @@ def init():
     global title
     global background
     global announcement
-    running = True
 
     background = StartBackground()
     game_world.add_object(background, 0)

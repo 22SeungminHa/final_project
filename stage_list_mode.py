@@ -5,7 +5,7 @@ import game_world
 import play_mode
 import start_mode
 from stage_list import StageList
-from background import StageListBackground
+from stage_list_background import StageListBackground
 
 
 def handle_select(x, y):
@@ -35,7 +35,6 @@ def handle_events():
 def init():
     global background
     global stage_list
-    running = True
 
     background = StageListBackground()
     game_world.add_object(background, 0)

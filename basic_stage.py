@@ -3,6 +3,10 @@ from pico2d import *
 import game_framework
 import game_world
 import stage_list_mode
+from arrow import Arrow
+from bow import Bow
+from stage1_background import Stage1Background
+from target import Target
 
 
 def handle_events():
@@ -23,23 +27,17 @@ def init():
     global bow
     global target
 
-    grass = Grass()
-    game_world.add_object(grass, 0)
+    background = Stage1Background()
+    game_world.add_object(background, 0)
 
-    boy = Boy()
-    game_world.add_object(boy, 1)
-    game_world.add_collision_pair('boy:ball', boy, None)
-    game_world.add_collision_pair('boy:zombie', boy, None)
+    arrow = Arrow()
+    game_world.add_object(arrow, 0)
 
-    balls = [Ball(random.randint(100, 1600 - 100), 60, 0) for _ in range(30)]
-    game_world.add_objects(balls, 1)
-    for ball in balls:
-        game_world.add_collision_pair('boy:ball', None, ball)
+    bow = Bow()
+    game_world.add_object(bow, 0)
 
-    zombie = Zombie()
-    game_world.add_object(zombie, 1)
-    game_world.add_collision_pair('zombie:ball', zombie, None)
-    game_world.add_collision_pair('boy:zombie', None, zombie)
+    target = Target()
+    game_world.add_object(target, 0)
 
 
 def finish():
