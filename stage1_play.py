@@ -34,7 +34,7 @@ def init():
     # game_world.add_object(arrow, 0)
 
     bow = Bow()
-    game_world.add_object(bow, 1)
+    game_world.add_object(bow, 2)
 
     target = Target()
-    game_world.add_object(target, 0)
+    game_world.add_object(target, 1)

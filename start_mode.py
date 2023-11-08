@@ -27,7 +27,7 @@ def init():
     game_world.add_object(background, 0)
 
     title = StartTitle()
-    game_world.add_object(title, 0)
+    game_world.add_object(title, 1)
 
 
 def finish():

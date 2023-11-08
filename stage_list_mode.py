@@ -41,7 +41,7 @@ def init():
     game_world.add_object(background, 0)
 
     stage_list = StageList()
-    game_world.add_object(stage_list, 0)
+    game_world.add_object(stage_list, 1)
 
 
 def finish():
