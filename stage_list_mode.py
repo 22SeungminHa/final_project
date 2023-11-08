@@ -14,7 +14,7 @@ def handle_select(x, y):
             stage_list.select = i
             return
     stage_list.select = -1
-    print('False')
+    # print('False')
 
 
 def handle_events():
@@ -26,9 +26,9 @@ def handle_events():
             game_framework.change_mode(start_mode)
 
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
-            print('selected')
             if 0 <= stage_list.select < 5:
                 game_framework.change_mode(play_mode)
+            # print('selected')
         elif event.type == SDL_MOUSEMOTION:
             handle_select(event.x, event.y)
 
