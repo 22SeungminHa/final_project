@@ -1,6 +1,10 @@
 from pico2d import *
 
 import game_framework
+import game_world
+from start_announcement import Announcement
+from start_background import Background
+from start_title import Title
 
 
 def handle_events():
@@ -11,20 +15,35 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
-            game_framework.change_mode(stage_mode)
+            # game_framework.change_mode(stage_mode)
+            pass
 
 
 def init():
-    pass
+    global title
+    global background
+    global announcement
+    running = True
+
+    background = Background()
+    game_world.add_object(background, 0)
+
+    title = Title()
+    game_world.add_object(title, 0)
+
+    announcement = Announcement()
+    game_world.add_object(announcement, 0)
 
 
 def finish():
-    pass
+    game_world.clear()
 
 
 def update():
-    pass
+    game_world.update()
 
 
 def draw():
-    pass
+    clear_canvas()
+    game_world.render()
+    update_canvas()
