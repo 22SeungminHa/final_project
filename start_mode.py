@@ -2,7 +2,6 @@ from pico2d import *
 
 import game_framework
 import game_world
-from start_announcement import Announcement
 from start_background import Background
 from start_title import Title
 
@@ -30,9 +29,6 @@ def init():
 
     title = Title()
     game_world.add_object(title, 0)
-
-    announcement = Announcement()
-    game_world.add_object(announcement, 0)
 
 
 def finish():
