@@ -1,6 +1,5 @@
 from pico2d import *
 
-import stage1_play_mode
 import game_world
 import stage_aim_mode
 import stage_intro_mode

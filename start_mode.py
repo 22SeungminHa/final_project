@@ -3,8 +3,7 @@ from pico2d import *
 import game_framework
 import game_world
 import stage_list_mode
-from start_background import StartBackground
-from start_title import StartTitle
+from start import StartTitle
 
 
 def handle_events():
@@ -22,9 +21,6 @@ def init():
     global title
     global background
     global announcement
-
-    background = StartBackground()
-    game_world.add_object(background, 0)
 
     title = StartTitle()
     game_world.add_object(title, 1)

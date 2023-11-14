@@ -14,7 +14,7 @@ class StageIntro:
         self.font = load_font('BMEULJIRO.otf', 120)
 
     def update(self):
-        self.x += 9.0 * (get_time() - self.intro_start_time - 1) ** 2
+        self.x += 8.0 * (get_time() - self.intro_start_time - 1) ** 2
         if get_time() - self.intro_start_time >= 3.0:
             game_framework.change_mode(stage_aim_mode)
 
