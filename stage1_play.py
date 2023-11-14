@@ -3,11 +3,9 @@ from pico2d import *
 import game_framework
 import game_world
 import stage_list_mode
-from object_arrow import Arrow
 from object_bow import Bow
 from stage1_background import Stage1Background
 from object_target import Target
-
 
 def handle_events():
     events = get_events()
@@ -23,18 +21,11 @@ def handle_events():
 
 def init():
     global background
-    global arrow
-    global bow
-    global target
+    global state
+
+    state = 0
 
     background = Stage1Background()
     game_world.add_object(background, 0)
 
-    # arrow = Arrow()
-    # game_world.add_object(arrow, 0)
 
-    bow = Bow()
-    game_world.add_object(bow, 2)
-
-    target = Target()
-    game_world.add_object(target, 1)
