@@ -8,7 +8,7 @@ import stage_launch_mode
 import stage_list_mode
 import stage_result_mode
 
-stage = [stage1_play, stage1_play, stage1_play, stage1_play, stage1_play]
+stage = [stage_intro_mode, stage_intro_mode, stage_intro_mode, stage_intro_mode, stage_intro_mode]
 mode = [stage_intro_mode, stage_aim_mode, stage_launch_mode, stage_result_mode]
 
 
