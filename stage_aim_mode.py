@@ -7,7 +7,6 @@ import stage_title_mode
 from background import Background
 from object_bow import Bow
 from object_target import Target
-from stage_title import StageTitle
 
 
 def init():
@@ -22,7 +21,6 @@ def init():
     target = Target()
     background = Background()
 
-    game_world.add_object(bow, 2)
     game_world.add_object(target, 1)
     game_world.add_object(background, 0)
 
@@ -31,6 +29,8 @@ def handle_events():
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
+            game_framework.quit()
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
             game_framework.change_mode(stage_launch_mode)
