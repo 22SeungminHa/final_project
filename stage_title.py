@@ -1,7 +1,7 @@
 from pico2d import *
 
 import game_framework
-import stage_aim_mode
+import game_world
 import stage_list_mode
 
 
@@ -15,7 +15,7 @@ class StageTitle:
     def update(self):
         self.x += 10.0 * (get_time() - self.intro_start_time - 1) ** 2
         if get_time() - self.intro_start_time >= 2.5:
-            game_framework.change_mode(stage_aim_mode)
+            game_framework.pop_mode()
 
     def draw(self):
         self.image.draw(self.x, 400)

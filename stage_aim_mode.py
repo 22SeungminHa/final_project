@@ -3,15 +3,20 @@ from pico2d import*
 import game_framework
 import game_world
 import stage_launch_mode
+import stage_title_mode
 from background import Background
 from object_bow import Bow
 from object_target import Target
+from stage_title import StageTitle
 
 
 def init():
     global bow
     global target
     global background
+    global title_animation
+
+    title_animation = False
 
     bow = Bow()
     target = Target()
@@ -36,6 +41,11 @@ def finish():
 
 
 def update():
+    global title_animation
+
+    if title_animation == False:
+        game_framework.push_mode(stage_title_mode)
+        title_animation = True
     game_world.update()
 
 
