@@ -2,12 +2,28 @@ from pico2d import load_image, get_events, clear_canvas, update_canvas, get_time
 from sdl2 import SDL_QUIT, SDL_KEYDOWN, SDLK_ESCAPE, SDLK_SPACE
 
 import game_framework
+import game_world
 import stage
+from background import Background
+from object_arrow import Arrow
+from object_target import Target
 
 
 def init():
-    global image
-    image = load_image('title.png')
+    global arrow
+    global target
+    global background
+    global x, y
+
+    x = stage_aim
+
+    arrow = Arrow()
+    target = Target()
+    background = Background()
+
+    game_world.add_object(arrow, 2)
+    game_world.add_object(target, 1)
+    game_world.add_object(background, 0)
 
 
 def finish():

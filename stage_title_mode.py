@@ -27,6 +27,7 @@ def handle_events():
             game_framework.pop_mode()
 
 
+
 def finish():
     game_world.remove_object(title)
     game_world.add_object(stage_aim_mode.bow, 2)
