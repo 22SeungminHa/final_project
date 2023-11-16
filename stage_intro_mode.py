@@ -1,22 +1,19 @@
-from pico2d import load_image, get_events, clear_canvas, update_canvas, get_time
-from sdl2 import SDL_QUIT, SDL_KEYDOWN, SDLK_ESCAPE, SDLK_SPACE
 from pico2d import*
 
 import game_framework
-import play_mode
 import game_world
 import stage_aim_mode
-from stage_intro import StageIntro
+from background import Background
+from stage_title import StageTitle
 
 
 def init():
-    global intro
-    intro = StageIntro()
-    game_world.add_object(intro, 0)
-
-
-def finish():
-    game_world.remove_object(intro)
+    global stage_intro
+    global background
+    stage_intro = StageTitle()
+    background = Background()
+    game_world.add_object(stage_intro, 1)
+    game_world.add_object(background, 0)
 
 
 def handle_events():
@@ -26,3 +23,25 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
             game_framework.change_mode(stage_aim_mode)
+
+
+def finish():
+    game_world.clear()
+
+
+def update():
+    game_world.update()
+
+
+def draw():
+    clear_canvas()
+    game_world.render()
+    update_canvas()
+
+
+def pause():
+    pass
+
+
+def resume():
+    pass

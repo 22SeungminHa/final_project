@@ -2,7 +2,7 @@ from pico2d import *
 
 import game_framework
 import game_world
-import play_mode
+import stage_intro_mode
 import start_mode
 from stage_list import StageList
 
@@ -26,7 +26,7 @@ def handle_events():
 
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             if 0 <= stage_list.select < 5:
-                game_framework.change_mode(play_mode)
+                game_framework.change_mode(stage_intro_mode)
             # print('selected')
         elif event.type == SDL_MOUSEMOTION:
             handle_select(event.x, event.y)
