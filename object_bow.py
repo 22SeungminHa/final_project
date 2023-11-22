@@ -5,20 +5,21 @@ import math
 
 r = 1
 
+
 class Bow:
     def __init__(self):
         self.image = load_image('./resource/bow.png')
-        self.coord = (0.0, 0.0)
-        self.start = (random.randint(-30, 30), random.randint(-30, 30))
-        self.size = 0.5
-        self.angle = math.atan2(self.start[1], self.start[0])
-        self.value = (math.cos(self.angle) * r, math.sin(self.angle) * r)
-
-    def animation(self):
-        pass
+        self.x = 275.0
+        self.y = -182.5625
+        self.size = 0.55
+        self.animation = False
 
     def update(self):
-        pass
+        if self.animation == False:
+            self.x -= 1
+            self.y = 50 + -0.01 * (self.x - 122.5) ** 2
+            if self.x <= 0:
+                self.animation = True
 
     def draw(self):
-        self.image.draw(711 + self.coord[0], 400 + self.coord[1], 1466 * self.size, 1866 * self.size)
+        self.image.draw(711 + self.x, 400 + self.y, 1466 * self.size, 1866 * self.size)
