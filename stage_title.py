@@ -25,7 +25,7 @@ class StageTitle:
 
     def update(self):
         self.x += RUN_SPEED_PPS * game_framework.frame_time * (get_time() - self.intro_start_time - 1) ** 2
-        if get_time() - self.intro_start_time >= 2.5:
+        if get_time() - self.intro_start_time >= 1.95:
             game_framework.pop_mode()
 
 

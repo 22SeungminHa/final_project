@@ -29,7 +29,7 @@ def handle_events():
             game_framework.push_mode(stage_list_mode)
         elif event.button == SDL_BUTTON_LEFT:
             if event.type == SDL_MOUSEBUTTONDOWN:
-                pass
+                bow.animation = 'zoom in'
             else:
                 game_framework.pop_mode()
                 game_framework.push_mode(stage_launch_mode)
@@ -38,6 +38,7 @@ def handle_events():
 
 def finish():
     game_world.remove_object(target)
+    game_world.remove_object(bow)
 
 
 def update():
