@@ -5,11 +5,7 @@ import background_mode
 
 def init():
     global image
-    global logo_start_time
-
     image = load_image('./resource/tuk_credit.png')
-    logo_start_time = get_time()
-    game_framework.push_mode(background_mode)
 
 
 def finish():
@@ -22,16 +18,15 @@ def handle_events():
 
 
 def update():
-    global logo_start_time
-
-    if get_time() - logo_start_time >= 2.0:
-        game_framework.pop_mode()
+    pass
 
 
 def draw():
     clear_canvas()
-    image.draw(711, 400, 1422, 800)
+    image.draw(711, 350, 1600, 1200)
     update_canvas()
+    game_framework.pop_mode()
+    game_framework.push_mode(background_mode)
 
 
 def pause():
