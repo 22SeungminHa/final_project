@@ -9,5 +9,5 @@ class Target:
         pass
 
     def draw(self):
-        self.image.draw(711, 400, 363, 363)
+        self.image.draw(711, 400, 200, 200)
 
