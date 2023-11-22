@@ -29,10 +29,10 @@ def handle_events():
             game_framework.push_mode(stage_list_mode)
         elif event.button == SDL_BUTTON_LEFT:
             if event.type == SDL_MOUSEBUTTONDOWN:
+                pass
+            else:
                 game_framework.pop_mode()
                 game_framework.push_mode(stage_launch_mode)
-            else:
-                pass
 
 
 

@@ -12,15 +12,20 @@ class Bow:
         self.x = 275.0
         self.y = -182.5625
         self.size = 0.7335
-        self.animation = False
+        self.animation = 'start'
 
     def update(self):
-        if self.animation == False:
+        if self.animation == 'start':
             self.size -= 0.0005
             self.x -= 0.75
             self.y = 50 + -0.01 * (self.x - 122.5) ** 2
             if self.x <= 0:
                 self.animation = True
+        elif self.animation == 'zoom in':
+            pass
+        elif self.animation == 'zoom out':
+            pass
+
 
     def draw(self):
         self.image.draw(711 + self.x, 400 + self.y, 1466 * self.size, 1866 * self.size)
