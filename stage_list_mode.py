@@ -2,8 +2,11 @@ from pico2d import *
 
 import game_framework
 import game_world
+import stage
 import stage_aim_mode
+import stage_title_mode
 import start_mode
+from background import Background
 from stage_list import StageList
 
 
@@ -22,18 +25,20 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            game_framework.change_mode(start_mode)
+            game_framework.pop_mode()
+            game_framework.push_mode(start_mode)
 
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             if 0 <= stage_list.select < 5:
-                game_framework.change_mode(stage_aim_mode)
+                stage.init()
+                game_framework.pop_mode()
+                game_framework.push_mode(stage_title_mode)
             # print('selected')
         elif event.type == SDL_MOUSEMOTION:
             handle_select(event.x, event.y)
 
 
 def init():
-    global background
     global stage_list
 
     stage_list = StageList()
@@ -41,7 +46,7 @@ def init():
 
 
 def finish():
-    game_world.clear()
+    game_world.remove_object(stage_list)
 
 
 def update():

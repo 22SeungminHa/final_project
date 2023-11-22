@@ -12,6 +12,7 @@ from stage_title import StageTitle
 
 def init():
     global title
+
     title = StageTitle()
     game_world.add_object(title, 3)
 
@@ -25,12 +26,11 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
             game_framework.pop_mode()
-
+            game_framework.push_mode(stage_aim_mode)
 
 
 def finish():
     game_world.remove_object(title)
-    game_world.add_object(stage_aim_mode.bow, 2)
 
 
 def update():

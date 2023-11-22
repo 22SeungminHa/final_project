@@ -1,8 +1,11 @@
 from pico2d import *
 
+import background
+import background_mode
 import game_framework
 import game_world
 import stage_list_mode
+from background import Background
 from start import StartTitle
 
 
@@ -14,20 +17,19 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
-            game_framework.change_mode(stage_list_mode)
+            game_framework.pop_mode()
+            game_framework.push_mode(stage_list_mode)
 
 
 def init():
     global title
-    global background
-    global announcement
 
     title = StartTitle()
     game_world.add_object(title, 1)
 
 
 def finish():
-    game_world.clear()
+    game_world.remove_object(title)
 
 
 def update():

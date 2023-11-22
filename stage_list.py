@@ -4,7 +4,6 @@ image_names = ('basic', 'wind', 'sheep', 'poop', 'TomYumGoong')
 
 class StageList:
     def __init__(self):
-        self.background_image = load_image('./resource/stage_background.png')
         self.image = [load_image('./resource/stage_' + image_names[i] + '.png') for i in range(5)]
         self.x = (248, 671, 1170, 466, 1031)
         self.y = (320, 348, 292, 618, 618)
@@ -16,7 +15,6 @@ class StageList:
         pass
 
     def draw(self):
-        self.background_image.draw(711, 400, 1422, 800)
         for i in range(5):
             if self.select == i:
                 self.image[i].draw(self.x[i], 800 - self.y[i], self.w[i] * 1.1, self.h[i] * 1.1)

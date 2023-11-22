@@ -2,6 +2,7 @@ from pico2d import*
 
 import game_framework
 import game_world
+import stage
 import stage_launch_mode
 import stage_title_mode
 from background import Background
@@ -10,19 +11,13 @@ from object_target import Target
 
 
 def init():
-    global bow
     global target
-    global background
     global title_animation
 
     title_animation = False
 
-    bow = Bow()
     target = Target()
-    background = Background()
-
     game_world.add_object(target, 1)
-    game_world.add_object(background, 0)
 
 
 def handle_events():
@@ -33,19 +28,15 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.quit()
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
-            game_framework.change_mode(stage_launch_mode)
+            game_framework.pop_mode()
+            game_framework.push_mode(stage_launch_mode)
 
 
 def finish():
-    game_world.clear()
+    game_world.remove_object(target)
 
 
 def update():
-    global title_animation
-
-    if title_animation == False:
-        game_framework.push_mode(stage_title_mode)
-        title_animation = True
     game_world.update()
 
 

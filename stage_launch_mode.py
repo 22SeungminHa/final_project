@@ -12,18 +12,15 @@ from object_target import Target
 def init():
     global arrow
     global target
-    global background
     global x, y
 
     x = stage_aim
 
     arrow = Arrow()
     target = Target()
-    background = Background()
 
     game_world.add_object(arrow, 2)
     game_world.add_object(target, 1)
-    game_world.add_object(background, 0)
 
 
 def finish():

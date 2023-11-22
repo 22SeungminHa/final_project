@@ -1,5 +1,9 @@
-from pico2d import *
+import stage_list
 
-class Stage:
-    def __init__(self, backgound_image):
-        self.background_image = backgound_image
+num = None
+
+
+def init():
+    global num
+
+    num = stage_list.StageList.select
