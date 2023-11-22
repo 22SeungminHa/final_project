@@ -9,7 +9,7 @@ from background import Background
 def init():
     global background
 
-    background = Background('m', 0)
+    background = Background()
     game_world.add_object(background, 0)
     game_framework.push_mode(start_mode)
 

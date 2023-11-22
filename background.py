@@ -3,33 +3,22 @@ from enum import Enum
 
 import game_world
 
+mode = ('start_background', 'stage_background')
 
 class Background:
-    def __init__(self, t, i):
-        self.palace = {}
-        self.mode = {}
-        self.tyg = {}
-        self.type = t
-        self.index = i
-
-        self.mode[0] = load_image("./resource/start_background.png")
-        self.mode[1] = load_image("./resource/stage_background.png")
-        for i in range(10):
-            self.palace[i] = load_image("./resource/palace" + "%d" % (i + 1) + ".png")
-        for i in range(3):
-            self.tyg[i] = load_image("./resource/Tom_Yum_Goong" + "%d" % (i + 1) + ".png")
+    def __init__(self):
+        self.image = load_image("./resource/start_background.png")
 
     def draw(self):
-        if self.type == 'm':
-            self.mode[self.index].draw(711, 400, 1422, 800)
-        elif self.type == 's':
-            self.palace[self.index].draw(711, 400, 1422, 800)
-        elif self.type == 't':
-            self.tyg[self.index].draw(711, 400, 1422, 800)
+        self.image.draw(711, 400, 1422, 800)
 
     def change_image(self, t, i):
-        self.type = t
-        self.index = i
+        if t == 'm':
+            self.image = load_image("./resource/" + mode[i] + ".png")
+        elif t == 's':
+            self.image = load_image("./resource/palace" + "%d" % (i + 1) + ".png")
+        elif t == 't':
+            self.image = load_image("./resource/Tom_Yum_Goong" + "%d" % (i + 1) + ".png")
 
     def update(self):
         pass
