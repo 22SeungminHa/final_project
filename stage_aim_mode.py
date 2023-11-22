@@ -12,12 +12,11 @@ from object_target import Target
 
 def init():
     global target
-    global title_animation
-
-    title_animation = False
+    global bow
 
     target = Target()
-    game_world.add_object(target, 1)
+    game_world.add_object(target, 0)
+    game_framework.push_mode(stage_title_mode)
 
 
 def handle_events():
@@ -48,7 +47,6 @@ def draw():
 
 def pause():
     pass
-
 
 def resume():
     pass

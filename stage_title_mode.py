@@ -26,7 +26,6 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
             game_framework.pop_mode()
-            game_framework.push_mode(stage_aim_mode)
 
 
 def finish():

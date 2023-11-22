@@ -32,7 +32,7 @@ def handle_events():
             if 0 <= stage_list.select < 5:
                 stage.init()
                 game_framework.pop_mode()
-                game_framework.push_mode(stage_title_mode)
+                game_framework.push_mode(stage_aim_mode)
             # print('selected')
         elif event.type == SDL_MOUSEMOTION:
             handle_select(event.x, event.y)

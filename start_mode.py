@@ -25,7 +25,7 @@ def init():
     global title
 
     title = StartTitle()
-    game_world.add_object(title, 1)
+    game_world.add_object(title, 0)
 
 
 def finish():

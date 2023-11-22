@@ -6,6 +6,7 @@ import game_world
 import stage
 import stage_aim_mode
 import stage_list_mode
+from object_bow import Bow
 
 # Boy Run Speed
 PIXEL_PER_METER = (158.0 / 0.3)  # 10 pixel 30 cm
@@ -26,7 +27,8 @@ class StageTitle:
         self.x += RUN_SPEED_PPS * game_framework.frame_time * (get_time() - self.intro_start_time - 1) ** 2
         if get_time() - self.intro_start_time >= 2.5:
             game_framework.pop_mode()
-            game_framework.push_mode(stage_aim_mode)
+            stage_aim_mode.bow = Bow()
+            game_world.add_object(stage_aim_mode.bow, 1)
 
     def draw(self):
         self.image.draw(self.x, 400)
