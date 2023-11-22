@@ -1,5 +1,7 @@
 from pico2d import *
 
+import background_mode
+
 image_names = ('basic', 'wind', 'sheep', 'poop', 'TomYumGoong')
 
 class StageList:
@@ -10,6 +12,7 @@ class StageList:
         self.w = (340, 346, 296, 298, 314)
         self.h = (322, 218, 332, 236, 294)
         self.select = -1
+        background_mode.background.change_image('m', 1)
 
     def update(self):
         pass

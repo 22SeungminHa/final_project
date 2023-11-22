@@ -1,7 +1,10 @@
 from pico2d import *
 
+import background_mode
 import game_framework
 import game_world
+import stage
+import stage_aim_mode
 import stage_list_mode
 
 # Boy Run Speed
@@ -17,12 +20,14 @@ class StageTitle:
         self.x = -475.0
         self.intro_start_time = get_time()
         self.font = load_font('BMEULJIRO.otf', 120)
+        background_mode.background.change_image('s', stage.num)
 
     def update(self):
         self.x += RUN_SPEED_PPS * game_framework.frame_time * (get_time() - self.intro_start_time - 1) ** 2
         if get_time() - self.intro_start_time >= 2.5:
             game_framework.pop_mode()
+            game_framework.push_mode(stage_aim_mode)
 
     def draw(self):
         self.image.draw(self.x, 400)
-        self.font.draw(self.x - 190, 400, f'stage {stage_list_mode.stage_list.select + 1:02d}', (0, 0, 0))
+        self.font.draw(self.x - 190, 400, f'stage {stage.num + 1:02d}', (0, 0, 0))

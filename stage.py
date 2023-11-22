@@ -1,4 +1,5 @@
 import stage_list
+import stage_list_mode
 
 num = None
 
@@ -6,4 +7,4 @@ num = None
 def init():
     global num
 
-    num = stage_list.StageList.select
+    num = stage_list_mode.stage_list.select
