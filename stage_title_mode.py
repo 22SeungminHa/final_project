@@ -4,6 +4,7 @@ import game_framework
 import game_world
 import stage_aim_mode
 import stage_launch_mode
+import stage_list_mode
 from background import Background
 from object_bow import Bow
 from object_target import Target
@@ -12,6 +13,7 @@ from stage_title import StageTitle
 
 def init():
     global title
+    global bow
 
     title = StageTitle()
     game_world.add_object(title, 3)
@@ -23,7 +25,8 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            game_framework.quit()
+            game_framework.pop_mode()
+            game_framework.push_mode(stage_list_mode)
         elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
             game_framework.pop_mode()
 

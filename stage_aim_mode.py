@@ -4,6 +4,7 @@ import game_framework
 import game_world
 import stage
 import stage_launch_mode
+import stage_list_mode
 import stage_title_mode
 from background import Background
 from object_bow import Bow
@@ -12,7 +13,6 @@ from object_target import Target
 
 def init():
     global target
-    global bow
 
     target = Target()
     game_world.add_object(target, 0)
@@ -25,10 +25,15 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            game_framework.quit()
-        elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             game_framework.pop_mode()
-            game_framework.push_mode(stage_launch_mode)
+            game_framework.push_mode(stage_list_mode)
+        elif event.button == SDL_BUTTON_LEFT:
+            if event.type == SDL_MOUSEBUTTONDOWN:
+                game_framework.pop_mode()
+                game_framework.push_mode(stage_launch_mode)
+            else:
+                pass
+
 
 
 def finish():
@@ -46,7 +51,10 @@ def draw():
 
 
 def pause():
-    pass
+    global bow
+
+    bow = Bow()
+    game_world.add_object(bow, 1)
 
 def resume():
     pass
