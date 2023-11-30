@@ -4,6 +4,7 @@ from pico2d import *
 import math
 
 import game_framework
+import stage_title
 
 r = 1
 
@@ -29,6 +30,9 @@ class Bow:
             self.y = 50 + -0.01 * (self.x - 122.5) ** 2
             if self.x <= 0:
                 self.animation = None
+                if stage_title.animation == True:
+                    game_framework.pop_mode()
+
         elif self.animation == 'zoom in':
             if self.size < 0.7:
                 self.size += 0.0005

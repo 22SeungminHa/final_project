@@ -11,19 +11,23 @@ from object_bow import Bow
 from object_target import Target
 
 
+
 def calculate_win(x, y):
     return (2 * x - 1422) / 2, -(2 * y - 800) / 2
 
 
 def normalize_vector(x, y):
     magnitude = (x ** 2 + y ** 2) ** 0.5
-    vx, vy = x / magnitude, y / magnitude
+    vx, vy = 0, 0
+    if magnitude != 0:
+        vx, vy = x / magnitude, y / magnitude
     return vx, vy
+
 
 def init():
     global target
 
-    target = Target()
+    target = Target('aim')
     game_world.add_object(target, 0)
     game_framework.push_mode(stage_title_mode)
 
@@ -34,8 +38,7 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            game_framework.pop_mode()
-            game_framework.push_mode(stage_list_mode)
+            game_framework.quit()
         elif event.type == SDL_MOUSEMOTION and bow.animation == 'zoom in':
             bow.vx, bow.vy = calculate_win(event.x, event.y)
             bow.vx, bow.vy = normalize_vector(bow.vx, bow.vy)
@@ -43,7 +46,9 @@ def handle_events():
         elif event.button == SDL_BUTTON_LEFT:
             if event.type == SDL_MOUSEBUTTONDOWN:
                 bow.animation = 'zoom in'
-            else:
+            elif bow.animation == 'zoom in':
+                stage_launch_mode.aim_x = bow.x * 300 / 200
+                stage_launch_mode.aim_y = bow.y * 300 / 200
                 game_framework.pop_mode()
                 game_framework.push_mode(stage_launch_mode)
 
