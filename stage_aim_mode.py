@@ -15,6 +15,11 @@ def calculate_win(x, y):
     return (2 * x - 1422) / 2, -(2 * y - 800) / 2
 
 
+def normalize_vector(x, y):
+    magnitude = (x ** 2 + y ** 2) ** 0.5
+    vx, vy = x / magnitude, y / magnitude
+    return vx, vy
+
 def init():
     global target
 
@@ -31,9 +36,10 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.pop_mode()
             game_framework.push_mode(stage_list_mode)
-        elif event.type == SDL_MOUSEMOTION:
-            bow.mx, bow.my = calculate_win(event.x, event.y)
-            # print(bow.mx, bow.my)
+        elif event.type == SDL_MOUSEMOTION and bow.animation == 'zoom in':
+            bow.vx, bow.vy = calculate_win(event.x, event.y)
+            bow.vx, bow.vy = normalize_vector(bow.vx, bow.vy)
+            # print(bow.vx, bow.vy)
         elif event.button == SDL_BUTTON_LEFT:
             if event.type == SDL_MOUSEBUTTONDOWN:
                 bow.animation = 'zoom in'
