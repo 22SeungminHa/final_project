@@ -4,6 +4,7 @@ import game_framework
 import game_world
 import stage
 import stage_aim_mode
+import stage_title
 import stage_title_mode
 import start_mode
 from background import Background
@@ -33,6 +34,7 @@ def handle_events():
                 stage.init()
                 game_framework.pop_mode()
                 game_framework.push_mode(stage_aim_mode)
+                stage_title.animation = False
             # print('selected')
         elif event.type == SDL_MOUSEMOTION:
             handle_select(event.x, event.y)
