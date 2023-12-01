@@ -14,6 +14,7 @@ RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
+
 class Bow:
     def __init__(self):
         self.image = load_image('./resource/bow.png')
@@ -34,10 +35,9 @@ class Bow:
                 self.animation = None
                 if stage_title.animation == True:
                     game_framework.pop_mode()
-        elif self.animation == 'zoom in' and self.size_v < 3/4*math.pi:
+        elif self.animation == 'zoom in' and self.size_v < 0.6 * math.pi:
             self.size_v += 0.01
             self.size = 0.55 + math.sin(self.size_v) / 3
-
 
         self.x += self.vx * RUN_SPEED_PPS * game_framework.frame_time
         self.y += self.vy * RUN_SPEED_PPS * game_framework.frame_time

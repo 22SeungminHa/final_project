@@ -26,7 +26,7 @@ def cal_score(x, y):
     if score < 0:
         score = 0
     stage_result_mode.total_score += score
-    print(score)
+    # print(score)
 
 
 def init():

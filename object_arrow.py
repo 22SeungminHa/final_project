@@ -19,6 +19,7 @@ class Arrow:
         self.score_image = load_image('./resource/score.png')
         self.font = load_font('BMEULJIRO.otf', 90)
         self.mark_image = load_image('./resource/mark.png')
+        self.shadow_image = load_image('./resource/arrow_shadow.png')
 
         self.x, self.y = stage_launch_mode.aim_x + 658, stage_launch_mode.aim_y - 594
         self.ax, self.ay = x, y
@@ -68,6 +69,9 @@ class Arrow:
     def draw(self):
         if stage_launch_mode.score == 0:
             self.mark_image.draw(711 + self.ax, 400 + self.ay, 431 / 2, 469 / 2)
+
+        if self.wait_start_time > 0:
+            self.shadow_image.draw(711 + self.x + math.cos(self.angle) * 1030 / 8, 400 + self.y + math.sin(self.angle) * 1030 / 8, 308 / 6, 504 / 6)
 
         # 화살
         self.image.clip_composite_draw(0, 0, 1030, 73, self.angle, 'h', 711 + self.x, 400 + self.y, 1030 * self.size, 73 * self.size)

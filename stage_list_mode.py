@@ -41,6 +41,7 @@ def handle_events():
                 stage_title.animation = False
                 stage_aim_mode.arrow_cnt = 4
                 stage_result_mode.total_score = 0
+                stage_aim_mode.arrow_mark.clear()
             # print('selected')
         elif event.type == SDL_MOUSEMOTION:
             handle_select(event.x, event.y)

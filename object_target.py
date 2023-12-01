@@ -13,7 +13,9 @@ class Target:
     def update(self):
         if self.mode == 'aim' and (stage_aim_mode.bow.animation == 'zoom in' or stage_aim_mode.bow.animation == 'zoom out') and self.size < 200 / 360:
             self.size += 0.0005
-            background_mode.background.size += 0.001
+            background_mode.background.size += 0.0005
+            for i in range(len(stage_aim_mode.arrow_mark)):
+                stage_aim_mode.arrow_mark[i].ratio += 0.0005
 
 
     def draw(self):
