@@ -16,17 +16,21 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 class Arrow:
     def __init__(self, x, y):
         self.image = load_image('./resource/arrow.png')
+        self.score_image = load_image('./resource/score.png')
+        self.font = load_font('BMEULJIRO.otf', 90)
+        self.mark_image = load_image('./resource/mark.png')
+
         self.x, self.y = stage_launch_mode.aim_x + 658, stage_launch_mode.aim_y - 594
         self.ax, self.ay = x, y
         self.angle = math.atan2(self.ay - self.y, self.ax - self.x)
         self.vx, self.vy = math.cos(self.angle), math.sin(self.angle)
-        self.font = load_font('BMEULJIRO.otf', 90)
         self.size = 1.0
-        self.wait_start_time = 0
+
         self.angle_v = 0
         self.num = 0
         self.amplitude = 1.2
-        self.score_image = load_image('./resource/score.png')
+
+        self.wait_start_time = 0
         self.score_y = 400 - 250 + 76
 
     def update(self):
@@ -62,6 +66,9 @@ class Arrow:
             self.wait_start_time = get_time()
 
     def draw(self):
+        if stage_launch_mode.score == 0:
+            self.mark_image.draw(711 + self.ax, 400 + self.ay, 431 / 2, 469 / 2)
+
         # 화살
         self.image.clip_composite_draw(0, 0, 1030, 73, self.angle, 'h', 711 + self.x, 400 + self.y, 1030 * self.size, 73 * self.size)
 
@@ -69,6 +76,7 @@ class Arrow:
         if stage_launch_mode.score == 0:
             self.score_image.draw(711, 400 - 250 - self.score_y)
             self.font.draw(711 - 90, 400 - 250 - self.score_y, f'miss', (0, 0, 0))
+
         # 점수 출력
         else:
             self.score_image.draw(711, 400 - 250 - self.score_y)
