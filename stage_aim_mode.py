@@ -12,6 +12,7 @@ from object_bow import Bow
 from object_target import Target
 
 
+arrow_cnt = 4
 
 def calculate_win(x, y):
     return (2 * x - 1422) / 2, -(2 * y - 800) / 2
@@ -35,6 +36,8 @@ def init():
     background_mode.background.size = 1
 
 def handle_events():
+    global arrow_cnt
+
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -49,6 +52,7 @@ def handle_events():
             if event.type == SDL_MOUSEBUTTONDOWN:
                 bow.animation = 'zoom in'
             elif bow.animation == 'zoom in' or bow.animation == 'zoom out':
+                arrow_cnt -= 1
                 stage_launch_mode.aim_x = bow.x * 300 / 200
                 stage_launch_mode.aim_y = bow.y * 300 / 200
                 background_mode.background.size = 300 / 200

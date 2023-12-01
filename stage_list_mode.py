@@ -35,6 +35,7 @@ def handle_events():
                 game_framework.pop_mode()
                 game_framework.push_mode(stage_aim_mode)
                 stage_title.animation = False
+                stage_aim_mode.arrow_cnt = 4
             # print('selected')
         elif event.type == SDL_MOUSEMOTION:
             handle_select(event.x, event.y)

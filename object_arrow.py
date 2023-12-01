@@ -30,17 +30,24 @@ class Arrow:
         self.score_y = 400 - 250 + 76
 
     def update(self):
-        self.size -= 0.005
-        if self.size < 0.25:
-            self.size = 0.25
+        # 화살 날아가기
+        if self.size > 0.25:
+            self.size -= 0.005
         self.x += self.vx * RUN_SPEED_PPS * game_framework.frame_time
         self.y += self.vy * RUN_SPEED_PPS * game_framework.frame_time
+
+        # 과녁에 맞았을 때
         if self.wait_start_time > 0:
+            # 점수판 애니메이션
             if self.score_y > 0:
                 self.score_y -= 2.5
+
+            # 모든 애니메이션이 끝나고 에임모드로 돌아가기
             if (stage_launch_mode.score == 0 and get_time() - self.wait_start_time >= 0.5) or get_time() - self.wait_start_time >= 1.0:
                 game_framework.pop_mode()
                 game_framework.push_mode(stage_aim_mode)
+
+            # 화살 튕기는 애니메이션
             elif self.amplitude < 2:
                 self.num += 0.1
                 self.amplitude += 0.002
@@ -49,18 +56,20 @@ class Arrow:
                 self.x -= self.ax - math.cos(self.angle - self.angle_v * (math.pi / 180) ** self.amplitude) * 1030 / 8 - (self.ax - math.cos(self.angle) * 1030 / 8)
                 self.y -= self.ax - math.sin(self.angle - self.angle_v * (math.pi / 180) ** self.amplitude) * 1030 / 8 - (self.ax - math.sin(self.angle) * 1030 / 8)
 
-        elif stage_launch_mode.score > 0 and self.x < self.ax - math.cos(self.angle) * 1030 / 8:
+        # 화살이 목표지점에 도달했을 때부터 시간 재기
+        elif (stage_launch_mode.score > 0 and self.x < self.ax - math.cos(self.angle) * 1030 / 8) or self.x < -711 + math.cos(self.angle) * 1030 / 8:
             self.vx, self.vy = 0, 0
-            self.wait_start_time = get_time()
-        elif self.x < -711 + math.cos(self.angle) * 1030 / 8:
             self.wait_start_time = get_time()
 
     def draw(self):
+        # 화살
         self.image.clip_composite_draw(0, 0, 1030, 73, self.angle, 'h', 711 + self.x, 400 + self.y, 1030 * self.size, 73 * self.size)
 
+        # miss 출력
         if stage_launch_mode.score == 0:
             self.score_image.draw(711, 400 - 250 - self.score_y)
             self.font.draw(711 - 90, 400 - 250 - self.score_y, f'miss', (0, 0, 0))
+        # 점수 출력
         else:
             self.score_image.draw(711, 400 - 250 - self.score_y)
             if stage_launch_mode.score == 10:
