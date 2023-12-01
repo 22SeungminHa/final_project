@@ -12,6 +12,7 @@ RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
 
+
 class Arrow:
     def __init__(self, x, y):
         self.image = load_image('./resource/arrow.png')
@@ -22,6 +23,9 @@ class Arrow:
         self.font = load_font('BMEULJIRO.otf', 70)
         self.size = 1.0
         self.wait_start_time = 0
+        self.angle_v = 0
+        self.num = 0
+        self.amplitude = 1.2
 
     def update(self):
         self.size -= 0.005
@@ -30,17 +34,30 @@ class Arrow:
         self.x += self.vx * RUN_SPEED_PPS * game_framework.frame_time
         self.y += self.vy * RUN_SPEED_PPS * game_framework.frame_time
         if self.wait_start_time > 0:
-            if get_time() - self.wait_start_time >= 2.0:
+            if (stage_launch_mode.score == 0 and get_time() - self.wait_start_time >= 0.5) or get_time() - self.wait_start_time >= 1.0:
                 game_framework.pop_mode()
                 game_framework.push_mode(stage_aim_mode)
-        elif self.x < self.ax - math.cos(self.angle) * 1030 / 8:
+            elif self.amplitude < 2:
+                self.num += 0.1
+                self.amplitude += 0.002
+                self.angle_v = math.sin(self.num)
+                self.angle += self.angle_v * (math.pi / 180) ** self.amplitude
+                self.x -= self.ax - math.cos(self.angle - self.angle_v * (math.pi / 180) ** self.amplitude) * 1030 / 8 - (self.ax - math.cos(self.angle) * 1030 / 8)
+                self.y -= self.ax - math.sin(self.angle - self.angle_v * (math.pi / 180) ** self.amplitude) * 1030 / 8 - (self.ax - math.sin(self.angle) * 1030 / 8)
+
+        elif stage_launch_mode.score > 0 and self.x < self.ax - math.cos(self.angle) * 1030 / 8:
             self.vx, self.vy = 0, 0
             self.wait_start_time = get_time()
-
+        elif self.x < -711 + math.cos(self.angle) * 1030 / 8:
+            self.wait_start_time = get_time()
 
     def draw(self):
         self.image.clip_composite_draw(0, 0, 1030, 73, self.angle, 'h', 711 + self.x, 400 + self.y, 1030 * self.size, 73 * self.size)
-        if self.wait_start_time > 0:
+        if stage_launch_mode.score == 0:
+            self.font.draw(711 + 200, 400, f'miss', (255, 255, 255))
+        elif self.wait_start_time > 0:
             self.font.draw(711 + 200, 400, f'{stage_launch_mode.score}', (255, 255, 255))
+
+
 
 

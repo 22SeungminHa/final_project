@@ -8,9 +8,10 @@ mode = ('start_background', 'stage_background')
 class Background:
     def __init__(self):
         self.image = load_image("./resource/start_background.png")
+        self.size = 1.0
 
     def draw(self):
-        self.image.draw(711, 400, 1422, 800)
+        self.image.draw(711, 400, 1422 * self.size, 800 * self.size)
 
     def change_image(self, t, i):
         if t == 'm':

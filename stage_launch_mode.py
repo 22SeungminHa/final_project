@@ -19,7 +19,9 @@ def cal_distance(x1, y1, x2, y2):
 
 def cal_score(x, y):
     global score
-    score = 10 - cal_distance(x, y, 0, 0) // 16
+    score = 10 - cal_distance(x, y, 0, 0) // (16 / 360 * 300)
+    if score < 0:
+        score = 0
 
 
 def init():
