@@ -15,8 +15,6 @@ from object_target import Target
 total_score = 0
 
 
-
-
 def init():
     print(total_score)
 

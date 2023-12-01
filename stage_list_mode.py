@@ -1,5 +1,6 @@
 from pico2d import *
 
+import background_mode
 import game_framework
 import game_world
 import stage
@@ -14,7 +15,8 @@ from stage_list import StageList
 
 def handle_select(x, y):
     for i in range(5):
-        if stage_list.x[i] - stage_list.w[i] / 2 <= x <= stage_list.x[i] + stage_list.w[i] / 2 and stage_list.y[i] - stage_list.h[i] / 2 <= y <= stage_list.y[i] + stage_list.h[i] / 2:
+        if stage_list.x[i] - 300 / 2 <= x <= stage_list.x[i] + 300 / 2 and stage_list.y[i] - \
+                300 / 2 <= y <= stage_list.y[i] + 300 / 2:
             stage_list.select = i
             return
     stage_list.select = -1
@@ -27,6 +29,7 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+            background_mode.background.change_image('m', 0)
             game_framework.pop_mode()
             game_framework.push_mode(start_mode)
 
