@@ -9,17 +9,19 @@ class Target:
         self.image = load_image('./resource/target.png')
         self.mode = mode
         self.size = 0.45
+        self.x, self.y = 0, 0
 
     def update(self):
-        if self.mode == 'aim' and (stage_aim_mode.bow.animation == 'zoom in' or stage_aim_mode.bow.animation == 'zoom out') and self.size < 200 / 360:
-            self.size += 0.0005
-            background_mode.background.size += 0.0005
-            for i in range(len(stage_aim_mode.arrow_mark)):
-                stage_aim_mode.arrow_mark[i].ratio += 0.0005
+        if self.mode == 'aim':
+            if (stage_aim_mode.bow.animation == 'zoom in' or stage_aim_mode.bow.animation == 'zoom out') and self.size < 200 / 360:
+                self.size += 0.0005
+                background_mode.background.size += 0.0005
+                for i in range(len(stage_aim_mode.arrow_mark)):
+                    stage_aim_mode.arrow_mark[i].ratio += 0.0005
 
 
     def draw(self):
         if self.mode == 'aim':
-            self.image.draw(711, 400, 360 * self.size, 360 * self.size)
+            self.image.draw(711 + self.x, 400 + self.y, 360 * self.size, 360 * self.size)
         elif self.mode == 'launch':
             self.image.draw(711, 400, 300, 300)
