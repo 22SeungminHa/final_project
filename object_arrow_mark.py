@@ -23,7 +23,7 @@ class Mark:
 
 
     def draw(self):
-        self.image.draw(self.x * self.ratio + 711, self.y * self.ratio + 400, 10, 10)
+        self.image.draw(self.x * self.ratio + 711, self.y * self.ratio + 400, 15 * self.ratio, 15 * self.ratio)
 
 
 

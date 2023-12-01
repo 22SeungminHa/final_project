@@ -68,7 +68,7 @@ class Arrow:
 
     def draw(self):
         if stage_launch_mode.score == 0:
-            self.mark_image.draw(711 + self.ax, 400 + self.ay, 431 / 2, 469 / 2)
+            self.mark_image.draw(711 + self.ax, 400 + self.ay, 431 / 3, 469 / 3)
 
         if self.wait_start_time > 0:
             self.shadow_image.draw(711 + self.x + math.cos(self.angle) * 1030 / 8, 400 + self.y + math.sin(self.angle) * 1030 / 8, 308 / 6, 504 / 6)

@@ -4,7 +4,7 @@ import game_framework
 import game_world
 import stage_aim_mode
 import stage_launch_mode
-import stage_list_mode
+import thema_list_mode
 from background import Background
 from object_bow import Bow
 from object_target import Target

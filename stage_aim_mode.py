@@ -5,7 +5,7 @@ import game_framework
 import game_world
 import stage
 import stage_launch_mode
-import stage_list_mode
+import thema_list_mode
 import stage_result_mode
 import stage_title_mode
 from background import Background

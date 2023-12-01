@@ -4,7 +4,7 @@ import background
 import background_mode
 import game_framework
 import game_world
-import stage_list_mode
+import thema_list_mode
 from background import Background
 from start import StartTitle
 
@@ -18,7 +18,7 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
             game_framework.pop_mode()
-            game_framework.push_mode(stage_list_mode)
+            game_framework.push_mode(thema_list_mode)
 
 
 def init():

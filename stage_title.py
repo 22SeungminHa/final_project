@@ -19,8 +19,8 @@ class StageTitle:
         self.image = load_image('./resource/stage_title.png')
         self.x = -475.0
         self.intro_start_time = get_time()
-        self.font = load_font('BMEULJIRO.otf', 70)
-        background_mode.background.change_image('s', stage.num)
+        self.font = load_font('BMEULJIRO.otf', 75)
+        background_mode.background.change_image('s', stage.thema_num)
 
     def update(self):
         global animation
@@ -33,4 +33,4 @@ class StageTitle:
     def draw(self):
         if animation == False:
             self.image.draw(self.x, 400, 943 /2, 342 /2)
-            self.font.draw(self.x - 130, 400, f'stage {stage.num + 1:02d}', (0, 0, 0))
+            self.font.draw(self.x - 120, 400, f'stage {stage.stage_num + 1}', (0, 0, 0))

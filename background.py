@@ -3,7 +3,7 @@ from enum import Enum
 
 import game_world
 
-mode = ('start_background', 'stage_background')
+mode = ('start_background', 'thema_background')
 
 class Background:
     def __init__(self):
@@ -16,6 +16,8 @@ class Background:
     def change_image(self, t, i):
         if t == 'm':
             self.image = load_image("./resource/" + mode[i] + ".png")
+        elif t == 'l':
+            self.image = load_image("./resource/thema_background" + "%d" % (i + 1) + ".png")
         elif t == 's':
             self.image = load_image("./resource/palace" + "%d" % (i + 1) + ".png")
         elif t == 't':
