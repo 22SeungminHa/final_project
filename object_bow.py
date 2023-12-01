@@ -22,6 +22,7 @@ class Bow:
         self.size = 0.7335
         self.animation = 'start'
         self.vx, self.vy = 0, 0
+        self.size_v = 0
 
     def update(self):
         if self.animation == 'start':
@@ -32,10 +33,15 @@ class Bow:
                 self.animation = None
                 if stage_title.animation == True:
                     game_framework.pop_mode()
-
         elif self.animation == 'zoom in':
-            if self.size < 0.7:
-                self.size += 0.0005
+            if self.size < 1.0:
+                self.size += 0.005
+            else:
+                self.animation = 'zoom out'
+        elif self.animation == 'zoom out' and self.size > 0.95:
+                self.size_v += 0.00005
+                self.size -= self.size_v
+
         self.x += self.vx * RUN_SPEED_PPS * game_framework.frame_time
         self.y += self.vy * RUN_SPEED_PPS * game_framework.frame_time
 
