@@ -68,16 +68,14 @@ def handle_events():
 
             # 화살 발사
             elif bow.animation == 'zoom in':
-                stage_launch_mode.aim_x = bow.x * 300 / (target.size * 360)
-                stage_launch_mode.aim_y = bow.y * 300 / (target.size * 360)
-                stage_launch_mode.center_x = target.x * 300 / (target.size * 360)
-                stage_launch_mode.canter_y = target.y * 300 / (target.size * 360)
-                stage_launch_mode.target_size = target.size
+                stage_launch_mode.aim_x = (bow.x - target.x) / target.size
+                stage_launch_mode.aim_y = (bow.y - target.y) / target.size
                 background_mode.background.size = 300 / (target.size * 360)
 
                 for i in range(len(arrow_mark)):
                     arrow_mark[i].ratio = 300 / 360
-                arrow_mark.append(Mark(bow.x / target.size, bow.y / target.size))
+                    arrow_mark[i].mx, arrow_mark[i].my = 0, 0
+                arrow_mark.append(Mark(stage_launch_mode.aim_x, stage_launch_mode.aim_y))
 
                 game_framework.pop_mode()
                 game_framework.push_mode(stage_launch_mode)
@@ -97,6 +95,7 @@ def finish():
 
 def update():
     game_world.update()
+
 
 
 def draw():
@@ -121,7 +120,7 @@ def pause():
     if len(arrow_mark) > 0:
         game_world.add_object(arrow_mark[len(arrow_mark) - 1], 2)
 
-    print(len(arrow_mark))
+    # print(len(arrow_mark))
     for i in range(len(arrow_mark)):
         arrow_mark[i].ratio = 0.45
 

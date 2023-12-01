@@ -14,7 +14,7 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
 
 class Arrow:
-    def __init__(self, x, y):
+    def __init__(self, ax, ay):
         self.image = load_image('./resource/arrow.png')
         self.score_image = load_image('./resource/score.png')
         self.font = load_font('BMEULJIRO.otf', 90)
@@ -23,7 +23,7 @@ class Arrow:
         self.icon_image = [load_image('./resource/thema_icon' + "%d" % (i + 1) + '.png') for i in range(stage.thema_num + 1)]
 
         self.x, self.y = stage_launch_mode.aim_x + 658, stage_launch_mode.aim_y - 594
-        self.ax, self.ay = x, y
+        self.ax, self.ay = ax, ay
         self.angle = math.atan2(self.ay - self.y, self.ax - self.x)
         self.vx, self.vy = math.cos(self.angle), math.sin(self.angle)
         self.size = 1.0

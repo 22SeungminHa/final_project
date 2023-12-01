@@ -17,13 +17,14 @@ class Mark:
         self.image = load_image('./resource/arrow_mark.png')
         self.x, self.y = x, y
         self.ratio = 1
+        self.mx, self.my = 0, 0
 
     def update(self):
         pass
 
-
     def draw(self):
-        self.image.draw(self.x * self.ratio + 711, self.y * self.ratio + 400, 15 * self.ratio, 15 * self.ratio)
+            self.image.draw(self.x * self.ratio + 711 + self.mx, self.y * self.ratio + 400 + self.my, 15 * self.ratio, 15 * self.ratio)
+
 
 
 
