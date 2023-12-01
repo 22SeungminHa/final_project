@@ -12,18 +12,25 @@ RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
 
-
-class Arrow:
+class LoadArrow:
     def __init__(self, index):
         self.image = load_image('./resource/arrow.png')
         self.index = index
+        self.y = -200
+        self.animation = True
+        self.t = 0
 
     def update(self):
-        pass
+        if self.animation:
+            self.t += 0.01
+            self.y = -200 + math.sin(self.t) * 230
+            if math.sin(self.t) * 230 - math.sin(self.t - 0.01) * 230 < 0 and self.y <= -25:
+                self.animation = False
+
 
     def draw(self):
-        # 화살
-        self.image.clip_composite_draw(0, 0, 1030, 73, 70 * (math.pi / 180), 'h', (self.index + 1) * 50, 0, 1030 * 0.5, 73 * 0.5)
+        self.image.clip_composite_draw(0, 0, 1030, 73, 75 * (math.pi / 180), 'a', (self.index) * 30 + 10, self.y, 1030 * 0.4, 73 * 0.4)
+
 
 
 

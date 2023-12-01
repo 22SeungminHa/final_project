@@ -8,6 +8,7 @@ import stage_launch_mode
 import stage_list_mode
 import stage_title_mode
 from background import Background
+from object_arrow_load import LoadArrow
 from object_bow import Bow
 from object_target import Target
 
@@ -77,9 +78,14 @@ def draw():
 
 def pause():
     global bow
+    global load_arrow
 
     bow = Bow()
     game_world.add_object(bow, 1)
+    for i in range(4):
+        load_arrow = LoadArrow(i)
+        game_world.add_object(load_arrow, 1)
+
 
 
 def resume():
