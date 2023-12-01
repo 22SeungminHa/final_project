@@ -13,6 +13,7 @@ from object_target import Target
 
 score = 0
 aim_x, aim_y = 0, 0
+target_size = 0
 
 def cal_distance(x1, y1, x2, y2):
     return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5

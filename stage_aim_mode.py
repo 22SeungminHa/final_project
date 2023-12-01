@@ -47,17 +47,23 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.quit()
-        elif event.type == SDL_MOUSEMOTION and (bow.animation == 'zoom in' or bow.animation == 'zoom out'):
+
+        # 마우스 이동
+        elif event.type == SDL_MOUSEMOTION and bow.animation == 'zoom in':
             bow.vx, bow.vy = calculate_win(event.x, event.y)
             bow.vx, bow.vy = normalize_vector(bow.vx, bow.vy)
-            # print(bow.vx, bow.vy)
+
         elif event.button == SDL_BUTTON_LEFT:
+            # 마우스 클릭
             if event.type == SDL_MOUSEBUTTONDOWN:
                 bow.animation = 'zoom in'
-            elif bow.animation == 'zoom in' or bow.animation == 'zoom out':
-                stage_launch_mode.aim_x = bow.x * 300 / 200
-                stage_launch_mode.aim_y = bow.y * 300 / 200
-                background_mode.background.size = 300 / 200
+
+            # 화살 발사
+            elif bow.animation == 'zoom in':
+                stage_launch_mode.aim_x = bow.x * 300 / (target.size * 360)
+                stage_launch_mode.aim_y = bow.y * 300 / (target.size * 360)
+                stage_launch_mode.target_size = target.size
+                background_mode.background.size = 300 / (target.size * 360)
                 game_framework.pop_mode()
                 game_framework.push_mode(stage_launch_mode)
 
