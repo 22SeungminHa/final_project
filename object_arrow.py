@@ -1,6 +1,7 @@
 from pico2d import *
 
 import game_framework
+import stage
 import stage_aim_mode
 import stage_launch_mode
 import math
@@ -12,7 +13,6 @@ RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
 
-
 class Arrow:
     def __init__(self, x, y):
         self.image = load_image('./resource/arrow.png')
@@ -20,6 +20,7 @@ class Arrow:
         self.font = load_font('BMEULJIRO.otf', 90)
         self.mark_image = load_image('./resource/mark.png')
         self.shadow_image = load_image('./resource/arrow_shadow.png')
+        self.icon_image = [load_image('./resource/thema_icon' + "%d" % (i + 1) + '.png') for i in range(stage.thema_num + 1)]
 
         self.x, self.y = stage_launch_mode.aim_x + 658, stage_launch_mode.aim_y - 594
         self.ax, self.ay = x, y
@@ -67,9 +68,11 @@ class Arrow:
             self.wait_start_time = get_time()
 
     def draw(self):
+        # miss 위치 출력
         if stage_launch_mode.score == 0:
             self.mark_image.draw(711 + self.ax, 400 + self.ay, 431 / 3, 469 / 3)
 
+        # 화살 그림자 출력
         if self.wait_start_time > 0:
             self.shadow_image.draw(711 + self.x + math.cos(self.angle) * 1030 / 8, 400 + self.y + math.sin(self.angle) * 1030 / 8, 308 / 6, 504 / 6)
 
@@ -89,6 +92,8 @@ class Arrow:
             else:
                 self.font.draw(711 - 60, 400 - 250 - self.score_y, f'{stage_launch_mode.score}', (0, 0, 0))
 
-
+        # 테마 아이콘
+        for i in range(len(self.icon_image)):
+            self.icon_image[i].draw(60 + 100 * i, 800 - 60, 100, 100)
 
 

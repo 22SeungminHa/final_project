@@ -4,6 +4,7 @@ from pico2d import *
 import math
 
 import game_framework
+import stage
 import stage_title
 
 r = 1
@@ -18,6 +19,8 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 class Bow:
     def __init__(self):
         self.image = load_image('./resource/bow.png')
+        self.icon_image = [load_image('./resource/thema_icon' + "%d" % (i + 1) + '.png') for i in range(stage.thema_num + 1)]
+
         self.x = 275.0
         self.y = -182.5625
         self.size = 0.7335
@@ -44,3 +47,5 @@ class Bow:
 
     def draw(self):
         self.image.draw(711 + self.x, 400 + self.y, 1466 * self.size, 1866 * self.size)
+        for i in range(len(self.icon_image)):
+            self.icon_image[i].draw(60 + 100 * i, 800 - 60, 100, 100)

@@ -11,3 +11,17 @@ def init():
 
     thema_num = thema_list_mode.thema_list.select
     stage_num = stage_list_mode.stage_list.select
+
+
+def stage_update(o):
+    match stage_num:
+        case 0:
+            pass
+        case 1:
+            pass
+        case 2:
+            pass
+        case 3:
+            pass
+        case 4:
+            pass

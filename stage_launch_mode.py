@@ -13,6 +13,7 @@ from object_target import Target
 
 score = 0
 aim_x, aim_y = 0, 0
+center_x, center_y = 0, 0
 target_size = 0
 
 def cal_distance(x1, y1, x2, y2):
@@ -22,7 +23,7 @@ def cal_distance(x1, y1, x2, y2):
 def cal_score(x, y):
     global score
 
-    score = 10 - cal_distance(x, y, 0, 0) // (16 / 360 * 300)
+    score = 10 - cal_distance(x, y, center_x, center_y) // (16 / 360 * 300)
     if score < 0:
         score = 0
     stage_result_mode.total_score += score

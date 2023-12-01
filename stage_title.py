@@ -32,5 +32,5 @@ class StageTitle:
 
     def draw(self):
         if animation == False:
-            self.image.draw(self.x, 400, 943 /2, 342 /2)
+            self.image.draw(self.x, 400, 943 / 2, 342 / 2)
             self.font.draw(self.x - 120, 400, f'stage {stage.stage_num + 1}', (0, 0, 0))

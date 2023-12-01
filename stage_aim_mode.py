@@ -70,6 +70,8 @@ def handle_events():
             elif bow.animation == 'zoom in':
                 stage_launch_mode.aim_x = bow.x * 300 / (target.size * 360)
                 stage_launch_mode.aim_y = bow.y * 300 / (target.size * 360)
+                stage_launch_mode.center_x = target.x * 300 / (target.size * 360)
+                stage_launch_mode.canter_y = target.y * 300 / (target.size * 360)
                 stage_launch_mode.target_size = target.size
                 background_mode.background.size = 300 / (target.size * 360)
 
