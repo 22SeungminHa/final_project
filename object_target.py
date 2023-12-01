@@ -11,8 +11,10 @@ class Target:
         self.mode = mode
         self.size = 0.45
         self.x, self.y = 0, 0
-        if stage.stage_num == 1 or stage.stage_num == 2 or stage.stage_num == 5 or stage.stage_num == 6:
+        if stage.stage_num == 1 or stage.stage_num == 2:
             self.amount = 0.1
+        elif stage.stage_num == 5 or stage.stage_num == 6:
+            self.amount = 0.2
         else:
             self.amount = 0
 
