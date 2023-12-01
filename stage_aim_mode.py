@@ -6,14 +6,15 @@ import game_world
 import stage
 import stage_launch_mode
 import stage_list_mode
+import stage_result_mode
 import stage_title_mode
 from background import Background
 from object_arrow_load import LoadArrow
 from object_bow import Bow
 from object_target import Target
 
-
 arrow_cnt = 4
+
 
 def calculate_win(x, y):
     return (2 * x - 1422) / 2, -(2 * y - 800) / 2
@@ -30,15 +31,16 @@ def normalize_vector(x, y):
 def init():
     global target
 
-    target = Target('aim')
-    game_world.add_object(target, 0)
-    game_framework.push_mode(stage_title_mode)
-
     background_mode.background.size = 1
+    if arrow_cnt == 0:
+        game_framework.pop_mode()
+        game_framework.push_mode(stage_result_mode)
+    else:
+        target = Target('aim')
+        game_world.add_object(target, 0)
+        game_framework.push_mode(stage_title_mode)
 
 def handle_events():
-    global arrow_cnt
-
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -53,7 +55,6 @@ def handle_events():
             if event.type == SDL_MOUSEBUTTONDOWN:
                 bow.animation = 'zoom in'
             elif bow.animation == 'zoom in' or bow.animation == 'zoom out':
-                arrow_cnt -= 1
                 stage_launch_mode.aim_x = bow.x * 300 / 200
                 stage_launch_mode.aim_y = bow.y * 300 / 200
                 background_mode.background.size = 300 / 200
@@ -62,8 +63,14 @@ def handle_events():
 
 
 def finish():
-    game_world.remove_object(target)
-    game_world.remove_object(bow)
+    global arrow_cnt
+
+    if arrow_cnt > 0:
+        game_world.remove_object(target)
+        game_world.remove_object(bow)
+        for i in range(arrow_cnt):
+            game_world.remove_object(load_arrow[i])
+        arrow_cnt -= 1
 
 
 def update():
@@ -82,10 +89,11 @@ def pause():
 
     bow = Bow()
     game_world.add_object(bow, 1)
-    for i in range(4):
-        load_arrow = LoadArrow(i)
-        game_world.add_object(load_arrow, 1)
 
+    load_arrow = []
+    for i in range(arrow_cnt):
+        load_arrow.append(LoadArrow(i))
+        game_world.add_object(load_arrow[i], 1)
 
 
 def resume():

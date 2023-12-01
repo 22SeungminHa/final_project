@@ -4,6 +4,7 @@ import game_framework
 import game_world
 import stage
 import stage_aim_mode
+import stage_result_mode
 import stage_title
 import stage_title_mode
 import start_mode
@@ -36,6 +37,7 @@ def handle_events():
                 game_framework.push_mode(stage_aim_mode)
                 stage_title.animation = False
                 stage_aim_mode.arrow_cnt = 4
+                stage_result_mode.total_score = 0
             # print('selected')
         elif event.type == SDL_MOUSEMOTION:
             handle_select(event.x, event.y)
