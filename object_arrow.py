@@ -27,6 +27,7 @@ class Arrow:
         self.num = 0
         self.amplitude = 1.2
         self.score_image = load_image('./resource/score.png')
+        self.score_y = 400 - 250 + 76
 
     def update(self):
         self.size -= 0.005
@@ -35,6 +36,8 @@ class Arrow:
         self.x += self.vx * RUN_SPEED_PPS * game_framework.frame_time
         self.y += self.vy * RUN_SPEED_PPS * game_framework.frame_time
         if self.wait_start_time > 0:
+            if self.score_y > 0:
+                self.score_y -= 2.5
             if (stage_launch_mode.score == 0 and get_time() - self.wait_start_time >= 0.5) or get_time() - self.wait_start_time >= 1.0:
                 game_framework.pop_mode()
                 game_framework.push_mode(stage_aim_mode)
@@ -54,16 +57,16 @@ class Arrow:
 
     def draw(self):
         self.image.clip_composite_draw(0, 0, 1030, 73, self.angle, 'h', 711 + self.x, 400 + self.y, 1030 * self.size, 73 * self.size)
-        if stage_launch_mode.score == 0:
-            self.score_image.draw(711, 400 - 250)
 
-            self.font.draw(711 - 90, 400 - 250, f'miss', (0, 0, 0))
-        elif self.wait_start_time > 0:
-            self.score_image.draw(711, 400 - 250)
+        if stage_launch_mode.score == 0:
+            self.score_image.draw(711, 400 - 250 - self.score_y)
+            self.font.draw(711 - 90, 400 - 250 - self.score_y, f'miss', (0, 0, 0))
+        else:
+            self.score_image.draw(711, 400 - 250 - self.score_y)
             if stage_launch_mode.score == 10:
-                self.font.draw(711 - 80, 400 - 250, f'{stage_launch_mode.score}', (0, 0, 0))
+                self.font.draw(711 - 80, 400 - 250 - self.score_y, f'{stage_launch_mode.score}', (0, 0, 0))
             else:
-                self.font.draw(711 - 60, 400 - 250, f'{stage_launch_mode.score}', (0, 0, 0))
+                self.font.draw(711 - 60, 400 - 250 - self.score_y, f'{stage_launch_mode.score}', (0, 0, 0))
 
 
 

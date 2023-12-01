@@ -11,7 +11,7 @@ class Target:
         self.size = 0.5
 
     def update(self):
-        if self.mode == 'aim' and stage_aim_mode.bow.animation == 'zoom in' and self.size < 200 / 360:
+        if self.mode == 'aim' and (stage_aim_mode.bow.animation == 'zoom in' or stage_aim_mode.bow.animation == 'zoom out') and self.size < 200 / 360:
             self.size += 0.001
             background_mode.background.size += 0.001
 
