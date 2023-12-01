@@ -34,11 +34,11 @@ class Bow:
                 if stage_title.animation == True:
                     game_framework.pop_mode()
         elif self.animation == 'zoom in':
-            if self.size < 1.0:
+            if self.size < 1.1:
                 self.size += 0.005
             else:
                 self.animation = 'zoom out'
-        elif self.animation == 'zoom out' and self.size > 0.95:
+        elif self.animation == 'zoom out' and self.size > 1.05:
                 self.size_v += 0.00005
                 self.size -= self.size_v
 

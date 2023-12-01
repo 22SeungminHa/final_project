@@ -20,12 +20,13 @@ class Arrow:
         self.ax, self.ay = x, y
         self.angle = math.atan2(self.ay - self.y, self.ax - self.x)
         self.vx, self.vy = math.cos(self.angle), math.sin(self.angle)
-        self.font = load_font('BMEULJIRO.otf', 70)
+        self.font = load_font('BMEULJIRO.otf', 90)
         self.size = 1.0
         self.wait_start_time = 0
         self.angle_v = 0
         self.num = 0
         self.amplitude = 1.2
+        self.score_image = load_image('./resource/score.png')
 
     def update(self):
         self.size -= 0.005
@@ -54,9 +55,15 @@ class Arrow:
     def draw(self):
         self.image.clip_composite_draw(0, 0, 1030, 73, self.angle, 'h', 711 + self.x, 400 + self.y, 1030 * self.size, 73 * self.size)
         if stage_launch_mode.score == 0:
-            self.font.draw(711 + 200, 400, f'miss', (255, 255, 255))
+            self.score_image.draw(711, 400 - 250)
+
+            self.font.draw(711 - 90, 400 - 250, f'miss', (0, 0, 0))
         elif self.wait_start_time > 0:
-            self.font.draw(711 + 200, 400, f'{stage_launch_mode.score}', (255, 255, 255))
+            self.score_image.draw(711, 400 - 250)
+            if stage_launch_mode.score == 10:
+                self.font.draw(711 - 80, 400 - 250, f'{stage_launch_mode.score}', (0, 0, 0))
+            else:
+                self.font.draw(711 - 60, 400 - 250, f'{stage_launch_mode.score}', (0, 0, 0))
 
 
 
