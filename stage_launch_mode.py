@@ -8,6 +8,7 @@ import stage_aim_mode
 import stage_result_mode
 from background import Background
 from object_arrow import Arrow
+from object_score_bar import Bar
 from object_target import Target
 
 
@@ -32,10 +33,10 @@ def init():
     global arrow
     global target
 
-    cal_score(aim_x, aim_y)
-
     arrow = Arrow(aim_x * 300 / 360, aim_y * 300 / 360)
     target = Target('launch')
+
+    cal_score(aim_x, aim_y)
 
     game_world.add_object(arrow, 2)
     game_world.add_object(target, 1)

@@ -12,6 +12,7 @@ from background import Background
 from object_arrow_load import LoadArrow
 from object_arrow_mark import Mark
 from object_bow import Bow
+from object_score_bar import Bar
 from object_target import Target
 
 arrow_cnt = 4
@@ -31,8 +32,14 @@ def normalize_vector(x, y):
 
 def init():
     global target
+    global bar
 
     background_mode.background.size = 1
+
+    if arrow_cnt == 4:
+        bar = Bar()
+        game_world.add_object(bar, 0)
+
     if arrow_cnt == 0:
         for i in range(len(arrow_mark) - 1):
             game_world.remove_object(arrow_mark[i])
@@ -90,8 +97,8 @@ def finish():
         for i in range(arrow_cnt):
             game_world.remove_object(load_arrow[i])
         arrow_cnt -= 1
-
-
+    else:
+        game_world.remove_object(bar)
 
 def update():
     game_world.update()
@@ -123,6 +130,7 @@ def pause():
     # print(len(arrow_mark))
     for i in range(len(arrow_mark)):
         arrow_mark[i].ratio = 0.45
+
 
 
 def resume():
