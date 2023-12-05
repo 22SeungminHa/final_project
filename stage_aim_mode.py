@@ -3,6 +3,7 @@ from pico2d import *
 import background_mode
 import game_framework
 import game_world
+import pause_mode
 import stage
 import stage_launch_mode
 import thema_list_mode
@@ -33,6 +34,9 @@ def normalize_vector(x, y):
 def init():
     global target
     global bar
+    global bow
+    global load_arrow
+    global arrow_mark
 
     background_mode.background.size = 1
     stage.init_wind()
@@ -50,6 +54,20 @@ def init():
         target = Target('aim')
         game_world.add_object(target, 0)
         game_framework.push_mode(stage_title_mode)
+        bow = Bow()
+        game_world.add_object(bow, 1)
+
+        load_arrow = []
+        for i in range(arrow_cnt):
+            load_arrow.append(LoadArrow(i))
+            game_world.add_object(load_arrow[i], 1)
+
+        if len(arrow_mark) > 0:
+            game_world.add_object(arrow_mark[len(arrow_mark) - 1], 2)
+
+        # print(len(arrow_mark))
+        for i in range(len(arrow_mark)):
+            arrow_mark[i].ratio = 0.45
 
 
 
@@ -59,7 +77,7 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            game_framework.quit()
+            game_framework.push_mode(pause_mode)
 
         # 마우스 이동
         elif event.type == SDL_MOUSEMOTION and bow.animation == 'zoom in':
@@ -70,6 +88,7 @@ def handle_events():
             # 마우스 클릭
             if event.type == SDL_MOUSEBUTTONDOWN:
                 bow.animation = 'zoom in'
+                bow.sound.play()
 
             # 화살 발사
             elif bow.animation == 'zoom in':
@@ -121,24 +140,7 @@ def draw():
 
 
 def pause():
-    global bow
-    global load_arrow
-    global arrow_mark
-
-    bow = Bow()
-    game_world.add_object(bow, 1)
-
-    load_arrow = []
-    for i in range(arrow_cnt):
-        load_arrow.append(LoadArrow(i))
-        game_world.add_object(load_arrow[i], 1)
-
-    if len(arrow_mark) > 0:
-        game_world.add_object(arrow_mark[len(arrow_mark) - 1], 2)
-
-    # print(len(arrow_mark))
-    for i in range(len(arrow_mark)):
-        arrow_mark[i].ratio = 0.45
+    pass
 
 
 

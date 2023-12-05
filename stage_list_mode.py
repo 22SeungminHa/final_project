@@ -19,7 +19,9 @@ def handle_select(x, y):
     for i in range(8):
         if stage_list.x[i] - 200 / 2 <= x <= stage_list.x[i] + 200 / 2 and \
                 stage_list.y[i] - 200 / 2 <= y <= stage_list.y[i] + 200 / 2:
-            stage_list.select = i
+            if stage_list.select != i:
+                stage_list.select = i
+                background_mode.background.on.play()
             return
     stage_list.select = -1
     # print('False')
@@ -38,6 +40,7 @@ def handle_events():
 
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             if 0 <= stage_list.select < 8:
+                background_mode.background.click.play()
                 stage.init()
                 stage_title.animation = False
                 stage_aim_mode.arrow_cnt = 4

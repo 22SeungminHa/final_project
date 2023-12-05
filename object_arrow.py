@@ -22,6 +22,9 @@ class Arrow:
         self.shadow_image = load_image('./resource/arrow_shadow.png')
         self.icon_image = [load_image('./resource/thema_icon' + "%d" % (i + 1) + '.png') for i in range(stage.thema_num + 1)]
 
+        self.sound = load_wav('./sound/fly.wav')
+        self.sound.set_volume(100)
+
         self.x, self.y = stage_launch_mode.aim_x + 658, stage_launch_mode.aim_y - 594
         self.ax, self.ay = ax, ay
         self.angle = math.atan2(self.ay - self.y, self.ax - self.x)

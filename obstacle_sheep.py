@@ -19,6 +19,10 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 class Sheep:
     def __init__(self):
         self.image = load_image('./resource/sheep.png')
+        self.sound = load_wav('./sound/sheep.wav')
+        self.sound.set_volume(50)
+        self.sound.play()
+
         self.timer = random.randint(1000, 2000)
         self.angle = math.atan2(random.uniform(-1.0, 1.0), random.uniform(-1.0, 1.0))
         self.x, self.y = 0, 0

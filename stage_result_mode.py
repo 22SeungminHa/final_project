@@ -29,12 +29,16 @@ def init():
 def handle_select(x, y):
     if 711 - 157 - 90 <= x <= 711 - 157 + 90 and \
             400 + 155 - 90 <= y <= 400 + 155 + 90:
-        result.retry_size = 1.1
+        if result.retry_size != 1.1:
+            result.retry_size = 1.1
+            background_mode.background.on.play()
     else:
         result.retry_size = 1.0
     if 711 + 157 - 90 <= x <= 711 + 157 + 90 and \
             400 + 155 - 90 <= y <= 400 + 155 + 90:
-        result.next_size = 1.1
+        if result.next_size != 1.1:
+            result.next_size = 1.1
+            background_mode.background.on.play()
     else:
         result.next_size = 1.0
 
@@ -51,6 +55,7 @@ def handle_events():
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             if 711 - 157 - 90 <= event.x <= 711 - 157 + 90 and \
                     400 + 155 - 90 <= event.y <= 400 + 155 + 90:
+                background_mode.background.click.play()
                 stage.init()
                 stage_title.animation = False
                 stage_aim_mode.arrow_cnt = 4
@@ -60,6 +65,7 @@ def handle_events():
                 game_framework.push_mode(stage_aim_mode)
             elif 711 + 157 - 90 <= event.x <= 711 + 157 + 90 and \
                     400 + 155 - 90 <= event.y <= 400 + 155 + 90:
+                background_mode.background.click.play()
                 if stage_list_mode.stage_list.select == 7 and thema_list_mode.thema_list.select == 4:
                     game_framework.pop_mode()
                     game_framework.push_mode(thema_list_mode)

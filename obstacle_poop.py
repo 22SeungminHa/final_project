@@ -19,6 +19,10 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 class Poop:
     def __init__(self):
         self.image = load_image('./resource/poop' + '%d' % random.randint(1, 3) + '.png')
+        self.sound = load_wav('./sound/poop.wav')
+        self.sound.set_volume(128)
+        self.sound.play()
+
         self.size = 0
         self.timer = 0
 

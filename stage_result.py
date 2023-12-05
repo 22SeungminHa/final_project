@@ -19,6 +19,10 @@ class Result:
         self.font = load_font('BMEULJIRO.otf', 150)
         self.size = [2.5, 3.5, 4.5]
 
+        self.sound = load_wav('./sound/block.wav')
+        self.sound.set_volume(128)
+        self.sound.play(3)
+
         if stage.target_score[2] < self.total_score and clear_state.clear[stage.thema_num][stage.stage_num] < 3:
             clear_state.clear[stage.thema_num][stage.stage_num] = 3
         elif stage.target_score[1] < self.total_score and clear_state.clear[stage.thema_num][stage.stage_num] < 2:

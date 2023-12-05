@@ -19,7 +19,9 @@ def handle_select(x, y):
     for i in range(5):
         if thema_list.x[i] - 300 / 2 <= x <= thema_list.x[i] + 300 / 2 and \
                 thema_list.y[i] - 300 / 2 <= y <= thema_list.y[i] + 300 / 2:
-            thema_list.select = i
+            if thema_list.select != i:
+                thema_list.select = i
+                background_mode.background.on.play()
             return
     thema_list.select = -1
     # print('False')
@@ -39,6 +41,7 @@ def handle_events():
 
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             if 0 <= thema_list.select < 5:
+                background_mode.background.click.play()
                 game_framework.pop_mode()
                 game_framework.push_mode(stage_list_mode)
             # print('selected')

@@ -22,6 +22,9 @@ class Bow:
         self.icon_image = [load_image('./resource/thema_icon' + "%d" % (i + 1) + '.png') for i in range(stage.thema_num + 1)]
         self.wind_image = load_image('./resource/direction.png')
 
+        self.sound = load_wav('./sound/bow.wav')
+        self.sound.set_volume(128)
+
         self.x = 275.0
         self.y = -182.5625
         self.size = 0.7335

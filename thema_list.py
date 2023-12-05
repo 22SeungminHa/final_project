@@ -15,6 +15,7 @@ class ThemaList:
         self.select = -1
         background_mode.background.change_image('m', 1)
 
+
     def update(self):
         pass
 

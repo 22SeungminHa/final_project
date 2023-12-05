@@ -13,6 +13,8 @@ def init():
     game_world.add_object(background, 0)
     game_framework.push_mode(start_mode)
 
+def handle_events():
+    pass
 
 def finish():
     game_world.clear()

@@ -34,6 +34,7 @@ def init():
     global target
 
     arrow = Arrow(aim_x * 300 / 360, aim_y * 300 / 360)
+    arrow.sound.play()
     target = Target('launch')
 
     cal_score(aim_x, aim_y)
