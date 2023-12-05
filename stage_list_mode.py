@@ -36,12 +36,12 @@ def handle_events():
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             if 0 <= stage_list.select < 8:
                 stage.init()
-                game_framework.pop_mode()
-                game_framework.push_mode(stage_aim_mode)
                 stage_title.animation = False
-                stage_aim_mode.arrow_cnt = 1
+                stage_aim_mode.arrow_cnt = 4
                 stage_result_mode.total_score = 0
                 stage_aim_mode.arrow_mark.clear()
+                game_framework.pop_mode()
+                game_framework.push_mode(stage_aim_mode)
             # print('selected')
         elif event.type == SDL_MOUSEMOTION:
             handle_select(event.x, event.y)
