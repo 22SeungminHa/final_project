@@ -1,4 +1,5 @@
 import math
+import random
 
 import stage_aim_mode
 import stage_list_mode
@@ -8,6 +9,16 @@ import thema_list_mode
 thema_num = -1
 stage_num = -1
 target_score = []
+wind_angle = 0
+
+def init_wind():
+    global wind_angle
+
+    if thema_num >= 1:
+        wind_angle = math.atan2(random.uniform(-1.0, 1.0), random.uniform(-1.0, 1.0))
+    else:
+        wind_angle = 0
+
 
 def init():
     global thema_num
@@ -16,6 +27,8 @@ def init():
 
     thema_num = thema_list_mode.thema_list.select
     stage_num = stage_list_mode.stage_list.select
+
+
     if stage_num < 4:
         target_score.append(22)
         target_score.append(30)
@@ -27,6 +40,13 @@ def init():
 
 def stage_update():
     # 장애물
+    match thema_num + 1:
+        case 3:
+            pass
+        case 4:
+            pass
+        case 5:
+            pass
 
     # 과녁 움직임
     match stage_num + 1:

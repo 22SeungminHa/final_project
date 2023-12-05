@@ -20,6 +20,7 @@ class Bow:
     def __init__(self):
         self.image = load_image('./resource/bow.png')
         self.icon_image = [load_image('./resource/thema_icon' + "%d" % (i + 1) + '.png') for i in range(stage.thema_num + 1)]
+        self.wind_image = load_image('./resource/direction.png')
 
         self.x = 275.0
         self.y = -182.5625
@@ -47,5 +48,12 @@ class Bow:
 
     def draw(self):
         self.image.draw(711 + self.x, 400 + self.y, 1466 * self.size, 1866 * self.size)
+
         for i in range(len(self.icon_image)):
             self.icon_image[i].draw(60 + 100 * i, 800 - 60, 100, 100)
+
+        if stage.thema_num >= 1:
+            self.wind_image.clip_composite_draw(0, 0, 150, 80, stage.wind_angle, 'h', 1422 - 100, 800 - 150)
+            # print(math.degrees(stage.wind_angle))
+
+

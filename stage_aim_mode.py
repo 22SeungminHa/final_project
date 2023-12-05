@@ -35,6 +35,7 @@ def init():
     global bar
 
     background_mode.background.size = 1
+    stage.init_wind()
 
     if arrow_cnt == 4:
         bar = Bar()
@@ -49,9 +50,6 @@ def init():
         target = Target('aim')
         game_world.add_object(target, 0)
         game_framework.push_mode(stage_title_mode)
-
-
-
 
 
 
@@ -75,8 +73,8 @@ def handle_events():
 
             # 화살 발사
             elif bow.animation == 'zoom in':
-                stage_launch_mode.aim_x = (bow.x - target.x) / target.size
-                stage_launch_mode.aim_y = (bow.y - target.y) / target.size
+                stage_launch_mode.aim_x = (bow.x - target.x) / target.size + math.cos(stage.wind_angle) * 20
+                stage_launch_mode.aim_y = (bow.y - target.y) / target.size + math.sin(stage.wind_angle) * 20
                 background_mode.background.size = 300 / (target.size * 360)
 
                 for i in range(len(arrow_mark)):
