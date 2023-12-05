@@ -26,7 +26,7 @@ class StageTitle:
     def update(self):
         global animation
 
-        self.vx += 0.005
+        self.vx += RUN_SPEED_PPS * game_framework.frame_time / 1000
         self.x += RUN_SPEED_PPS * game_framework.frame_time * (self.vx - 1.55) ** 2
         if self.x >= 1422 + 943 / 2:
             animation = True
@@ -36,4 +36,4 @@ class StageTitle:
     def draw(self):
         if animation == False:
             self.image.draw(self.x, 400, 943 / 2, 342 / 2)
-            self.font.draw(self.x - 120, 400, f'stage {stage.stage_num + 1}', (0, 0, 0))
+            self.font.draw(self.x - 110, 400, f'stage {stage.stage_num + 1}', (0, 0, 0))

@@ -10,6 +10,7 @@ import stage_aim_mode
 import stage_list_mode
 import stage_result_mode
 import stage_title
+import stage_title_mode
 import thema_list_mode
 from background import Background
 from pause import Pause
@@ -46,6 +47,7 @@ def handle_events():
                             game_framework.pop_mode()
                             game_framework.pop_mode()
                             stage.init()
+                            stage_title.animation = False
                             stage_aim_mode.arrow_cnt = 4
                             stage_result_mode.total_score = 0
                             stage_aim_mode.arrow_mark.clear()
