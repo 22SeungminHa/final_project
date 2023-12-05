@@ -100,7 +100,8 @@ def finish():
 
 def update():
     game_world.update()
-
+    stage.update()
+    # print('poop')
 
 
 def draw():

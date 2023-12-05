@@ -1,24 +1,31 @@
 import math
 import random
 
+import game_world
 import stage_aim_mode
 import stage_list_mode
 import thema_list
 import thema_list_mode
+from obstacle_poop import Poop
 
 thema_num = -1
 stage_num = -1
 target_score = []
 wind_angle = 0
+poop_timer = 0
 
 def init_wind():
-    global wind_angle
+    global wind_angle, poop_timer
 
+    # 바람
     if thema_num >= 1:
         wind_angle = math.atan2(random.uniform(-1.0, 1.0), random.uniform(-1.0, 1.0))
     else:
         wind_angle = 0
 
+    # 똥
+    if thema_num >= 3:
+        poop_timer = random.randint(500, 1000)
 
 def init():
     global thema_num
@@ -27,7 +34,6 @@ def init():
 
     thema_num = thema_list_mode.thema_list.select
     stage_num = stage_list_mode.stage_list.select
-
 
     if stage_num < 4:
         target_score.append(22)
@@ -38,17 +44,7 @@ def init():
         target_score.append(33)
         target_score.append(36)
 
-def stage_update():
-    # 장애물
-    match thema_num + 1:
-        case 3:
-            pass
-        case 4:
-            pass
-        case 5:
-            pass
-
-    # 과녁 움직임
+def move_target():
     match stage_num + 1:
         case 2 | 6:
             if -100 > stage_aim_mode.target.x or stage_aim_mode.target.x > 100:
@@ -78,3 +74,15 @@ def stage_update():
 
         stage_aim_mode.target.x = math.cos(stage_aim_mode.target.amount) * 100
         stage_aim_mode.target.y = math.sin(stage_aim_mode.target.amount) * 100
+
+
+def update():
+    global poop_timer
+    global poop
+
+    # 장애물
+    if thema_num >= 3:
+        poop_timer -= 1
+        if poop_timer == 0:
+            poop = Poop()
+            game_world.add_object(poop, 4)
