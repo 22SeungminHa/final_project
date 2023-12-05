@@ -53,8 +53,8 @@ def stage_update():
 
     if stage_num + 1 == 4 or stage_num + 1 == 8:
         for i in range(len(stage_aim_mode.arrow_mark)):
-            stage_aim_mode.arrow_mark[i].mx += math.cos(stage_aim_mode.target.amount) * 75 - stage_aim_mode.target.x
-            stage_aim_mode.arrow_mark[i].my += math.sin(stage_aim_mode.target.amount) * 75 - stage_aim_mode.target.y
+            stage_aim_mode.arrow_mark[i].mx += math.cos(stage_aim_mode.target.amount) * 100 - stage_aim_mode.target.x
+            stage_aim_mode.arrow_mark[i].my += math.sin(stage_aim_mode.target.amount) * 100 - stage_aim_mode.target.y
 
         stage_aim_mode.target.x = math.cos(stage_aim_mode.target.amount) * 100
         stage_aim_mode.target.y = math.sin(stage_aim_mode.target.amount) * 100
