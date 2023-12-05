@@ -73,8 +73,11 @@ def handle_events():
 
             # 화살 발사
             elif bow.animation == 'zoom in':
-                stage_launch_mode.aim_x = (bow.x - target.x) / target.size + math.cos(stage.wind_angle) * 20
-                stage_launch_mode.aim_y = (bow.y - target.y) / target.size + math.sin(stage.wind_angle) * 20
+                stage_launch_mode.aim_x = (bow.x - target.x) / target.size
+                stage_launch_mode.aim_y = (bow.y - target.y) / target.size
+                if stage.thema_num == 1 or stage.thema_num == 4:
+                    stage_launch_mode.aim_x += math.cos(stage.wind_angle) * 20
+                    stage_launch_mode.aim_y += math.sin(stage.wind_angle) * 20
                 background_mode.background.size = 300 / (target.size * 360)
 
                 for i in range(len(arrow_mark)):
@@ -88,6 +91,13 @@ def handle_events():
 
 def finish():
     global arrow_cnt
+
+    if stage.sheep != None:
+        game_world.remove_object(stage.sheep)
+        stage.sheep = None
+    if stage.poop != None:
+        game_world.remove_object(stage.poop)
+        stage.poop = None
 
     if arrow_cnt > 0:
         game_world.remove_object(target)

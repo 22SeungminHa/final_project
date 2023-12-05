@@ -10,7 +10,7 @@ import stage_title
 r = 1
 
 PIXEL_PER_METER = (10.0 / 0.3)  # 10 pixel 30 cm
-RUN_SPEED_KMPH = 25.0  # Km / Hour
+RUN_SPEED_KMPH = 20.0  # Km / Hour
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
@@ -52,8 +52,7 @@ class Bow:
         for i in range(len(self.icon_image)):
             self.icon_image[i].draw(60 + 100 * i, 800 - 60, 100, 100)
 
-        if stage.thema_num >= 1:
+        if stage.thema_num == 1 or stage.thema_num == 4:
             self.wind_image.clip_composite_draw(0, 0, 150, 80, stage.wind_angle, 'h', 1422 - 100, 800 - 150)
-            # print(math.degrees(stage.wind_angle))
 
 

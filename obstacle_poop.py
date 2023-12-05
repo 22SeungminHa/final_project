@@ -23,12 +23,13 @@ class Poop:
         self.timer = 0
 
     def update(self):
-        if self.size < 1:
+        if self.size < 0.8:
             self.size += 0.01
         elif self.timer == 0:
             self.timer = get_time()
         elif get_time() - self.timer > 1.0:
             game_world.remove_object(stage.poop)
+            stage.poop = None
             stage.poop_timer = random.randint(500, 1000)
 
     def draw(self):

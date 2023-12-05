@@ -7,33 +7,37 @@ import stage_list_mode
 import thema_list
 import thema_list_mode
 from obstacle_poop import Poop
+from obstacle_sheep import Sheep
 
 thema_num = -1
 stage_num = -1
 target_score = []
 wind_angle = 0
 poop_timer = 0
+sheep = None
+poop = None
 
 def init_wind():
-    global wind_angle, poop_timer
+    global wind_angle
 
     # 바람
-    if thema_num >= 1:
+    if thema_num == 1 or thema_num == 4:
         wind_angle = math.atan2(random.uniform(-1.0, 1.0), random.uniform(-1.0, 1.0))
     else:
         wind_angle = 0
 
-    # 똥
-    if thema_num >= 3:
-        poop_timer = random.randint(500, 1000)
 
 def init():
     global thema_num
     global stage_num
     global target_score
+    global poop_timer
 
     thema_num = thema_list_mode.thema_list.select
     stage_num = stage_list_mode.stage_list.select
+
+    if thema_num >= 3:
+        poop_timer = random.randint(500, 1000)
 
     if stage_num < 4:
         target_score.append(22)
@@ -78,11 +82,17 @@ def move_target():
 
 def update():
     global poop_timer
-    global poop
+    global poop, sheep
 
     # 장애물
+    # 양
+    if sheep == None and (thema_num == 2 or thema_num == 4) and random.randint(1, 1000) == 1:
+        sheep = Sheep()
+        game_world.add_object(sheep, 3)
+
+    # 똥
     if thema_num >= 3:
         poop_timer -= 1
         if poop_timer == 0:
             poop = Poop()
-            game_world.add_object(poop, 4)
+            game_world.add_object(poop, 3)
