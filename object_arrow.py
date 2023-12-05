@@ -88,9 +88,9 @@ class Arrow:
         else:
             self.score_image.draw(711, 400 - 250 - self.score_y)
             if stage_launch_mode.score == 10:
-                self.font.draw(711 - 80, 400 - 250 - self.score_y, f'{stage_launch_mode.score}', (0, 0, 0))
+                self.font.draw(711 - 40, 400 - 255 - self.score_y, f'{int(stage_launch_mode.score)}', (0, 0, 0))
             else:
-                self.font.draw(711 - 60, 400 - 250 - self.score_y, f'{stage_launch_mode.score}', (0, 0, 0))
+                self.font.draw(711 - 20, 400 - 255 - self.score_y, f'{int(stage_launch_mode.score)}', (0, 0, 0))
 
         # 테마 아이콘
         for i in range(len(self.icon_image)):

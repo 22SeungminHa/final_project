@@ -7,16 +7,28 @@ import thema_list_mode
 
 thema_num = -1
 stage_num = -1
+target_score = []
 
 def init():
     global thema_num
     global stage_num
+    global target_score
 
     thema_num = thema_list_mode.thema_list.select
     stage_num = stage_list_mode.stage_list.select
-
+    if stage_num < 4:
+        target_score.append(22)
+        target_score.append(30)
+        target_score.append(33)
+    else:
+        target_score.append(25)
+        target_score.append(33)
+        target_score.append(36)
 
 def stage_update():
+    # 장애물
+
+    # 과녁 움직임
     match stage_num + 1:
         case 2 | 6:
             if -100 > stage_aim_mode.target.x or stage_aim_mode.target.x > 100:

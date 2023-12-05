@@ -16,8 +16,8 @@ from stage_list import StageList
 
 def handle_select(x, y):
     for i in range(8):
-        if stage_list.x[i] - 200 / 2 <= x <= stage_list.x[i] + 200 / 2 and stage_list.y[i] - \
-                200 / 2 <= y <= stage_list.y[i] + 200 / 2:
+        if stage_list.x[i] - 200 / 2 <= x <= stage_list.x[i] + 200 / 2 and \
+                stage_list.y[i] - 200 / 2 <= y <= stage_list.y[i] + 200 / 2:
             stage_list.select = i
             return
     stage_list.select = -1
@@ -39,7 +39,7 @@ def handle_events():
                 game_framework.pop_mode()
                 game_framework.push_mode(stage_aim_mode)
                 stage_title.animation = False
-                stage_aim_mode.arrow_cnt = 4
+                stage_aim_mode.arrow_cnt = 1
                 stage_result_mode.total_score = 0
                 stage_aim_mode.arrow_mark.clear()
             # print('selected')

@@ -16,8 +16,8 @@ from thema_list import ThemaList
 
 def handle_select(x, y):
     for i in range(5):
-        if thema_list.x[i] - 300 / 2 <= x <= thema_list.x[i] + 300 / 2 and thema_list.y[i] - \
-                300 / 2 <= y <= thema_list.y[i] + 300 / 2:
+        if thema_list.x[i] - 300 / 2 <= x <= thema_list.x[i] + 300 / 2 and \
+                thema_list.y[i] - 300 / 2 <= y <= thema_list.y[i] + 300 / 2:
             thema_list.select = i
             return
     thema_list.select = -1
