@@ -1,6 +1,7 @@
 from pico2d import *
 
 import background_mode
+import clear_state
 import stage
 
 
@@ -17,6 +18,16 @@ class Result:
         self.total_score = total_score
         self.font = load_font('BMEULJIRO.otf', 150)
         self.size = [2.5, 3.5, 4.5]
+
+        if stage.target_score[2] < self.total_score and clear_state.clear[stage.thema_num][stage.stage_num] < 3:
+            clear_state.clear[stage.thema_num][stage.stage_num] = 3
+        elif stage.target_score[1] < self.total_score and clear_state.clear[stage.thema_num][stage.stage_num] < 2:
+            clear_state.clear[stage.thema_num][stage.stage_num] = 2
+        elif stage.target_score[0] < self.total_score and clear_state.clear[stage.thema_num][stage.stage_num] < 1:
+            clear_state.clear[stage.thema_num][stage.stage_num] = 1
+        else:
+            clear_state.clear[stage.thema_num][stage.stage_num] = 0
+
 
     def update(self):
         for i in range(3):

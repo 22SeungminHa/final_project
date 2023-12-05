@@ -1,6 +1,7 @@
 from pico2d import *
 
 import background_mode
+import clear_state
 import game_framework
 import game_world
 import stage
@@ -32,6 +33,8 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.pop_mode()
             game_framework.push_mode(thema_list_mode)
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
+            clear_state.init_state(thema_list_mode.thema_list.select)
 
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             if 0 <= stage_list.select < 8:

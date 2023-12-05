@@ -1,5 +1,7 @@
 import time
 
+import clear_state
+
 
 def change_mode(mode):
     global stack
@@ -35,6 +37,7 @@ def pop_mode():
 
 def quit():
     global running
+    clear_state.write_2d_list_to_file('stage.json')
     running = False
 
 
